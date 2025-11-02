@@ -27,6 +27,7 @@ import Parent from "./pages/Parent";
 import Home_TrangChu from "./pages/Home_TrangChu";
 import LoginPage from "./pages/LoginPage";
 import Introduce from "./pages/Introduce";
+import MapComponent from "./components/MapComponent";
 
 function App() {
   return (
@@ -34,11 +35,12 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/trangchu" element={<Home_TrangChu />} />
-          <Route path="/" element={<Introduce />} />
+          {/* <Route path="/" element={<Home_TrangChu />} /> */}
+          <Route path="/map_component" element={<Introduce />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test_parent" element={<Parent />} />
+          <Route path="/" element={<MapComponent />} />
 
         </Routes>
       </BrowserRouter>

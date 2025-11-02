@@ -108,6 +108,7 @@ const Introduce = () => {
           <div className="space-y-8 text-left">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
               {t("home.title")}
+              {/* Chào mừng đến với */}
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">

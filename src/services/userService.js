@@ -36,4 +36,5 @@ const updateUser = async (userData) => {
     return axios.put(`${API_BASE_URL}/user/api/update-user`, userData);
 };
 
+
 export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser };
