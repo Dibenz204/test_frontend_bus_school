@@ -1,0 +1,27 @@
+/* Animation pulse cho vùng trường */
+@keyframes pulse-boundary {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.school-boundary-pulse {
+    animation: pulse-boundary 3s ease-in-out infinite;
+}
+
+/* Style cho icon trường */
+.school-icon {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
