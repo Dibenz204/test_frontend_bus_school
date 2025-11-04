@@ -12,7 +12,9 @@ const getAllBusStops = async (visibleFilter) => {
 };
 
 const deleteBusStop = async (id) => {
-    return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop/${id}`);
+    return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop`, {
+        params: { id }
+    });
 };
 
 export { createBusStop, getAllBusStops, deleteBusStop };
