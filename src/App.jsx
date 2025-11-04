@@ -36,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<Home_TrangChu />} /> */}
-          <Route path="/map_component" element={<Introduce />} />
+          <Route path="/introduce" element={<Introduce />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test_parent" element={<Parent />} />

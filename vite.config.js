@@ -1,40 +1,65 @@
-// import path from "path";
-// import tailwindcss from "@tailwindcss/vite";
-// import react from "@vitejs/plugin-react";
-// import { defineConfig } from "vite";
 
-// // https://vite.dev/config/
+// // import path from "path";
+// // import tailwindcss from "@tailwindcss/vite";
+// // import react from "@vitejs/plugin-react";
+// // import { defineConfig } from "vite";
+
+// // // https://vite.dev/config/
+// // export default defineConfig({
+// //   plugins: [react(), tailwindcss()],
+// //   resolve: {
+// //     alias: {
+// //       "@": path.resolve(__dirname, "./src"),
+// //     },
+// //   },
+// //   server: {
+// //     port: 5173, // 👈 Thêm dòng này để cố định port
+// //     allowedHosts: [
+// //       "gaiterless-ranae-unsensual.ngrok-free.dev",
+// //     ],
+// //   },
+// // });
+
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+// import path from 'path'
+
 // export default defineConfig({
-//   plugins: [react(), tailwindcss()],
+//   plugins: [react()],
 //   resolve: {
 //     alias: {
-//       "@": path.resolve(__dirname, "./src"),
+//       '@': path.resolve(__dirname, './src'),
 //     },
 //   },
 //   server: {
-//     allowedHosts: [
-//       "gaiterless-ranae-unsensual.ngrok-free.dev",
-//     ],
+//     port: 5173,
 //   },
-// });
+//   build: {
+//     outDir: 'dist',
+//     sourcemap: false,
+//   }
+// })
 
-import path from "path";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite' // ← THÊM DÒNG NÀY
+import path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss() // ← THÊM DÒNG NÀY
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
-    port: 5173, // 👈 Thêm dòng này để cố định port
-    allowedHosts: [
-      "gaiterless-ranae-unsensual.ngrok-free.dev",
-    ],
+    port: 5173,
   },
-});
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+  }
+})
