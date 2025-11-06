@@ -30,8 +30,8 @@ const GPSTrackingComponent = () => {
     // Socket.IO Connection
     useEffect(() => {
         // ⚠️ ĐỔI URL NÀY NẾU DEPLOY
-        const SOCKET_URL = 'http://localhost:5001'; // Local
-        // const SOCKET_URL = 'https://test-backend-bus-school.onrender.com'; // Production
+        // const SOCKET_URL = 'http://localhost:5001'; // Local
+        const SOCKET_URL = 'https://be-bus-school.onrender.com'; // Production
 
         addLog(`🔌 Đang kết nối tới ${SOCKET_URL}/gps...`, 'info');
 
