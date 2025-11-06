@@ -56,23 +56,23 @@ const DriverGPSView = () => {
     }, []);
 
     // Khởi tạo Map
-    useEffect(() => {
-        if (!mapRef.current) {
-            const L = window.L;
-            if (!L) {
-                addLog('❌ Leaflet chưa được load!', 'error');
-                return;
-            }
+    // useEffect(() => {
+    //     if (!mapRef.current) {
+    //         const L = window.L;
+    //         if (!L) {
+    //             addLog('❌ Leaflet chưa được load!', 'error');
+    //             return;
+    //         }
 
-            const map = L.map('map').setView([10.8231, 106.6297], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
+    //         const map = L.map('map').setView([10.8231, 106.6297], 13);
+    //         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //             attribution: '© OpenStreetMap'
+    //         }).addTo(map);
 
-            mapRef.current = map;
-            addLog('✅ Map initialized', 'success');
-        }
-    }, []);
+    //         mapRef.current = map;
+    //         addLog('✅ Map initialized', 'success');
+    //     }
+    // }, []);
 
     const startGPSTracking = () => {
         if (!navigator.geolocation) {
@@ -139,28 +139,28 @@ const DriverGPSView = () => {
         socket.emit('update-location', locationData);
 
         // Cập nhật marker
-        if (mapRef.current && window.L) {
-            const L = window.L;
+        // if (mapRef.current && window.L) {
+        //     const L = window.L;
 
-            if (!markerRef.current) {
-                const icon = L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
+        //     if (!markerRef.current) {
+        //         const icon = L.icon({
+        //             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        //             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        //             iconSize: [25, 41],
+        //             iconAnchor: [12, 41],
+        //             popupAnchor: [1, -34],
+        //             shadowSize: [41, 41]
+        //         });
 
-                markerRef.current = L.marker([latitude, longitude], { icon })
-                    .addTo(mapRef.current)
-                    .bindPopup(`<b>🚗 ${driverId}</b><br/>📍 Vị trí của bạn`);
-            } else {
-                markerRef.current.setLatLng([latitude, longitude]);
-            }
+        //         markerRef.current = L.marker([latitude, longitude], { icon })
+        //             .addTo(mapRef.current)
+        //             .bindPopup(`<b>🚗 ${driverId}</b><br/>📍 Vị trí của bạn`);
+        //     } else {
+        //         markerRef.current.setLatLng([latitude, longitude]);
+        //     }
 
-            mapRef.current.setView([latitude, longitude], 15);
-        }
+        //     mapRef.current.setView([latitude, longitude], 15);
+        // }
     };
 
     const stopGPSTracking = () => {
@@ -273,7 +273,7 @@ const DriverGPSView = () => {
                     </div>
 
                     {/* Map */}
-                    <div className="lg:col-span-2">
+                    {/* <div className="lg:col-span-2">
                         <div className="bg-white rounded-xl shadow-lg p-6 h-[800px]">
                             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                                 <MapPin size={24} className="text-green-600" />
@@ -281,7 +281,7 @@ const DriverGPSView = () => {
                             </h2>
                             <div id="map" className="w-full h-[720px] rounded-lg"></div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
