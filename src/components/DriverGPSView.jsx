@@ -27,7 +27,7 @@ const DriverGPSView = () => {
     useEffect(() => {
         const SOCKET_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:5001'
-            : 'https://test-backend-bus-school.onrender.com';
+            : 'https://be-bus-school.onrender.com';
 
         addLog(`🔌 Đang kết nối tới ${SOCKET_URL}/gps...`, 'info');
 
@@ -232,8 +232,8 @@ const DriverGPSView = () => {
                                 onClick={toggleGPS}
                                 disabled={!isConnected}
                                 className={`w-full py-4 rounded-lg font-bold text-white text-lg transition-all transform hover:scale-105 ${isGPSActive
-                                        ? 'bg-red-500 hover:bg-red-600'
-                                        : 'bg-green-500 hover:bg-green-600'
+                                    ? 'bg-red-500 hover:bg-red-600'
+                                    : 'bg-green-500 hover:bg-green-600'
                                     } disabled:bg-gray-300 disabled:cursor-not-allowed`}
                             >
                                 {isGPSActive ? '🔴 TẮT GPS' : '🟢 BẬT GPS'}
@@ -260,8 +260,8 @@ const DriverGPSView = () => {
                                         <div
                                             key={log.id}
                                             className={`p-2 rounded ${log.type === 'success' ? 'bg-green-50 text-green-800' :
-                                                    log.type === 'error' ? 'bg-red-50 text-red-800' :
-                                                        'bg-gray-50 text-gray-800'
+                                                log.type === 'error' ? 'bg-red-50 text-red-800' :
+                                                    'bg-gray-50 text-gray-800'
                                                 }`}
                                         >
                                             <span className="text-gray-500">[{log.time}]</span> {log.message}
