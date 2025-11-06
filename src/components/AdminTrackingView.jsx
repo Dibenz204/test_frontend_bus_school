@@ -26,6 +26,12 @@ const AdminTrackingView = () => {
         }, ...prev].slice(0, 15));
     };
 
+    useEffect(() => {
+        console.log('Drivers updated:', drivers);
+        console.log('Visible drivers:', visibleDrivers);
+        console.log('Current markers:', Object.keys(markersRef.current));
+    }, [drivers, visibleDrivers]);
+
     // Socket.IO Connection
     useEffect(() => {
         const SOCKET_URL = window.location.hostname === 'localhost'
@@ -94,11 +100,20 @@ const AdminTrackingView = () => {
         fetchAllDrivers();
     }, []);
 
+    useEffect(() => {
+        // Cập nhật markers khi drivers hoặc visibleDrivers thay đổi
+        drivers.forEach(driver => {
+            if (visibleDrivers[driver.id_driver]) {
+                updateDriverMarker(driver.id_driver, driver.toado_x, driver.toado_y, driver.driver_name);
+            }
+        });
+    }, [drivers, visibleDrivers]);
+
     const fetchAllDrivers = async () => {
         try {
             const BACKEND_URL = window.location.hostname === 'localhost'
                 ? 'http://localhost:5001'
-                : 'https://test-backend-bus-school.onrender.com';
+                : 'https://be-bus-school.onrender.com';
 
             const response = await fetch(`${BACKEND_URL}/api/driver/all-locations`);
             const data = await response.json();
@@ -152,49 +167,101 @@ const AdminTrackingView = () => {
         });
 
         // Cập nhật marker trên map (nếu driver được hiển thị)
-        if (visibleDrivers[id_driver]) {
-            updateDriverMarker(id_driver, toado_x, toado_y, driver_name);
-        }
+        // if (visibleDrivers[id_driver]) {
+        //     updateDriverMarker(id_driver, toado_x, toado_y, driver_name);
+        // }
     };
 
+    // const updateDriverMarker = (id_driver, toado_x, toado_y, driver_name) => {
+    //     if (!mapRef.current || !window.L) return;
+
+    //     const L = window.L;
+    //     const driverIndex = drivers.findIndex(d => d.id_driver === id_driver);
+    //     const colorIndex = driverIndex >= 0 ? driverIndex % MARKER_COLORS.length : 0;
+    //     const markerColor = MARKER_COLORS[colorIndex];
+
+    //     if (!markersRef.current[id_driver]) {
+    //         const icon = L.icon({
+    //             iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${markerColor}.png`,
+    //             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    //             iconSize: [25, 41],
+    //             iconAnchor: [12, 41],
+    //             popupAnchor: [1, -34],
+    //             shadowSize: [41, 41]
+    //         });
+
+    //         const marker = L.marker([toado_x, toado_y], { icon })
+    //             .addTo(mapRef.current)
+    //             .bindPopup(`
+    //       <div style="font-family: sans-serif;">
+    //         <strong style="font-size: 14px;">🚗 ${id_driver}</strong><br/>
+    //         <span style="font-size: 12px;">👤 ${driver_name || 'Unknown'}</span><br/>
+    //         <span style="font-size: 11px; color: #666;">📍 ${toado_x.toFixed(5)}, ${toado_y.toFixed(5)}</span>
+    //       </div>
+    //     `);
+
+    //         markersRef.current[id_driver] = marker;
+    //     } else {
+    //         markersRef.current[id_driver].setLatLng([toado_x, toado_y]);
+    //         markersRef.current[id_driver].setPopupContent(`
+    //     <div style="font-family: sans-serif;">
+    //       <strong style="font-size: 14px;">🚗 ${id_driver}</strong><br/>
+    //       <span style="font-size: 12px;">👤 ${driver_name || 'Unknown'}</span><br/>
+    //       <span style="font-size: 11px; color: #666;">📍 ${toado_x.toFixed(5)}, ${toado_y.toFixed(5)}</span>
+    //     </div>
+    //   `);
+    //     }
+    // };
+
     const updateDriverMarker = (id_driver, toado_x, toado_y, driver_name) => {
-        if (!mapRef.current || !window.L) return;
+        if (!mapRef.current || !window.L) {
+            console.warn('Map chưa sẵn sàng');
+            return;
+        }
 
         const L = window.L;
+        const driver = drivers.find(d => d.id_driver === id_driver);
         const driverIndex = drivers.findIndex(d => d.id_driver === id_driver);
         const colorIndex = driverIndex >= 0 ? driverIndex % MARKER_COLORS.length : 0;
         const markerColor = MARKER_COLORS[colorIndex];
 
-        if (!markersRef.current[id_driver]) {
-            const icon = L.icon({
-                iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${markerColor}.png`,
-                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowSize: [41, 41]
-            });
+        try {
+            if (!markersRef.current[id_driver]) {
+                // Tạo marker mới
+                const icon = L.icon({
+                    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${markerColor}.png`,
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
 
-            const marker = L.marker([toado_x, toado_y], { icon })
-                .addTo(mapRef.current)
-                .bindPopup(`
-          <div style="font-family: sans-serif;">
+                const marker = L.marker([toado_x, toado_y], { icon })
+                    .addTo(mapRef.current)
+                    .bindPopup(
+                        `<div style="font-family: sans-serif;">
             <strong style="font-size: 14px;">🚗 ${id_driver}</strong><br/>
             <span style="font-size: 12px;">👤 ${driver_name || 'Unknown'}</span><br/>
             <span style="font-size: 11px; color: #666;">📍 ${toado_x.toFixed(5)}, ${toado_y.toFixed(5)}</span>
-          </div>
-        `);
+          </div>`
+                    );
 
-            markersRef.current[id_driver] = marker;
-        } else {
-            markersRef.current[id_driver].setLatLng([toado_x, toado_y]);
-            markersRef.current[id_driver].setPopupContent(`
-        <div style="font-family: sans-serif;">
+                markersRef.current[id_driver] = marker;
+                addLog(`📍 Tạo marker mới cho ${id_driver}`, 'success');
+            } else {
+                // Cập nhật marker hiện có
+                markersRef.current[id_driver].setLatLng([toado_x, toado_y]);
+                markersRef.current[id_driver].setPopupContent(
+                    `<div style="font-family: sans-serif;">
           <strong style="font-size: 14px;">🚗 ${id_driver}</strong><br/>
           <span style="font-size: 12px;">👤 ${driver_name || 'Unknown'}</span><br/>
           <span style="font-size: 11px; color: #666;">📍 ${toado_x.toFixed(5)}, ${toado_y.toFixed(5)}</span>
-        </div>
-      `);
+        </div>`
+                );
+            }
+        } catch (error) {
+            addLog(`❌ Lỗi cập nhật marker ${id_driver}: ${error.message}`, 'error');
         }
     };
 
