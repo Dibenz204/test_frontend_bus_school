@@ -30,6 +30,8 @@ import Introduce from "./pages/Introduce";
 import MapComponent from "./components/MapComponent";
 import GPSTrackingComponent from "./components/GPSTrackingComponent";
 import TestGPSLocation from "./components/TestGPSLocation";
+import DriverGPSView from "./components/DriverGPSView"; // ✅ Component tài xế
+import AdminTrackingView from "./components/AdminTrackingView";
 
 function App() {
   return (
@@ -48,13 +50,16 @@ function App() {
 
 
           {/* Trang GPS cho TÀI XẾ - Gửi vị trí realtime */}
-          <Route path="/driver-gps" element={<GPSTrackingComponent />} />
+          {/* <Route path="/driver-gps" element={<GPSTrackingComponent />} /> */}
+          <Route path="/driver-gps" element={<DriverGPSView />} />
 
           {/* Trang GPS cho ADMIN - Xem tất cả tài xế */}
-          <Route path="/admin-tracking" element={<GPSTrackingComponent />} />
+          {/* <Route path="/admin-tracking" element={<GPSTrackingComponent />} /> */}
 
           {/* Trang GPS cho PHỤ HUYNH - Xem xe đưa đón con */}
-          <Route path="/parent-tracking" element={<GPSTrackingComponent />} />
+          {/* <Route path="/parent-tracking" element={<GPSTrackingComponent />} /> */}
+
+          <Route path="/admin-tracking" element={<AdminTrackingView />} />
 
           <Route path="/test-gps" element={<TestGPSLocation />} />
 
