@@ -12,6 +12,7 @@ const DriverGPSView = () => {
     const watchIdRef = useRef(null);
     const mapRef = useRef(null);
     const markerRef = useRef(null);
+    const [onlineDrivers, setOnlineDrivers] = useState({});
 
     const addLog = (message, type = 'info') => {
         const timestamp = new Date().toLocaleTimeString('vi-VN');
@@ -24,6 +25,45 @@ const DriverGPSView = () => {
     };
 
     // Socket.IO Connection
+    // useEffect(() => {
+    //     const SOCKET_URL = window.location.hostname === 'localhost'
+    //         ? 'http://localhost:5001'
+    //         : 'https://be-bus-school.onrender.com';
+
+    //     addLog(`🔌 Đang kết nối tới ${SOCKET_URL}/gps...`, 'info');
+
+    //     const socketInstance = io(`${SOCKET_URL}/gps`, {
+    //         transports: ['websocket', 'polling'],
+    //         reconnection: true,
+    //         reconnectionDelay: 1000,
+    //         reconnectionAttempts: 5
+    //     });
+
+    //     socketInstance.on('connect', () => {
+    //         setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: true }));
+    //         addLog(`🟢 ${data.id_driver} connected`, 'success');
+    //         // addLog(`✅ Socket connected: ${socketInstance.id}`, 'success');
+    //         setIsConnected(true);
+
+    //         socketInstance.emit('register-driver', {
+    //             id_driver: driverId
+    //         });
+    //     });
+
+    //     socketInstance.on('disconnect', () => {
+    //         setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: false }));
+    //         addLog(`🔴 ${data.id_driver} disconnected`, 'error');
+    //         // addLog('❌ Socket disconnected', 'error');
+    //         // setIsConnected(false);
+    //     });
+
+    //     setSocket(socketInstance);
+
+    //     return () => {
+    //         socketInstance.disconnect();
+    //     };
+    // }, []);
+
     useEffect(() => {
         const SOCKET_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:5001'
@@ -39,11 +79,19 @@ const DriverGPSView = () => {
         });
 
         socketInstance.on('connect', () => {
+            setOnlineDrivers(prev => ({ ...prev, [driverId]: true })); // ✅ FIX: dùng driverId
+            addLog(`🟢 ${driverId} connected`, 'success'); // ✅ FIX: dùng driverId
             addLog(`✅ Socket connected: ${socketInstance.id}`, 'success');
             setIsConnected(true);
+
+            socketInstance.emit('register-driver', {
+                id_driver: driverId
+            });
         });
 
         socketInstance.on('disconnect', () => {
+            setOnlineDrivers(prev => ({ ...prev, [driverId]: false })); // ✅ FIX: dùng driverId
+            addLog(`🔴 ${driverId} disconnected`, 'error'); // ✅ FIX: dùng driverId
             addLog('❌ Socket disconnected', 'error');
             setIsConnected(false);
         });

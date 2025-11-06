@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { MapPin, Wifi, WifiOff, Users, Eye, EyeOff } from 'lucide-react';
+import { time } from 'console';
 
 // Màu marker cho từng tài xế
 const MARKER_COLORS = [
@@ -144,7 +145,7 @@ const AdminTrackingView = () => {
     };
 
     const updateDriverLocation = (data) => {
-        const { id_driver, toado_x, toado_y, driver_name, driver_phone } = data;
+        const { id_driver, toado_x, toado_y, driver_name, driver_phone, timestamp } = data;
 
         // Cập nhật state drivers
         setDrivers(prev => {
@@ -152,7 +153,15 @@ const AdminTrackingView = () => {
             if (existing) {
                 return prev.map(d =>
                     d.id_driver === id_driver
-                        ? { ...d, toado_x, toado_y, driver_name, driver_phone, timestamp: new Date().toISOString() }
+                        ? {
+                            ...d,
+                            toado_x,
+                            toado_y,
+                            driver_name,
+                            driver_phone,
+                            // timestamp: new Date().toISOString() 
+                            timestamp: timestamp || d.timestamp
+                        }
                         : d
                 );
             }
@@ -162,7 +171,7 @@ const AdminTrackingView = () => {
                 toado_y,
                 driver_name: driver_name || 'Unknown',
                 driver_phone: driver_phone || 'N/A',
-                timestamp: new Date().toISOString()
+                timestamp: timestamp || new Date().toISOString()
             }];
         });
 
@@ -391,12 +400,16 @@ const AdminTrackingView = () => {
 
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-2">
+                                                            <div className={`w-3 h-3 rounded-full ${onlineDrivers[driver.id_driver] ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                                                            <p className="font-bold text-gray-800">{driver.id_driver}</p>
                                                             <div
                                                                 className="w-3 h-3 rounded-full"
                                                                 style={{
                                                                     backgroundColor: markerColor === 'grey' ? '#999' : markerColor
                                                                 }}
                                                             ></div>
+
+
                                                             <p className="font-bold text-gray-800">{driver.id_driver}</p>
                                                         </div>
                                                         <p className="text-sm text-gray-700 mt-1">
