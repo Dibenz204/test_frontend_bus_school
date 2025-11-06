@@ -30,7 +30,7 @@ const AdminTrackingView = () => {
     useEffect(() => {
         const SOCKET_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:5001'
-            : 'https://test-backend-bus-school.onrender.com';
+            : 'https://be-bus-school.onrender.com';
 
         addLog(`🔌 Đang kết nối tới ${SOCKET_URL}/gps...`, 'info');
 
@@ -308,8 +308,8 @@ const AdminTrackingView = () => {
                                             <div
                                                 key={driver.id_driver}
                                                 className={`p-3 rounded-lg border-2 transition-all cursor-pointer ${visibleDrivers[driver.id_driver]
-                                                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-blue-300'
-                                                        : 'bg-gray-50 border-gray-200 opacity-50'
+                                                    ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-blue-300'
+                                                    : 'bg-gray-50 border-gray-200 opacity-50'
                                                     }`}
                                                 onClick={() => toggleDriverVisibility(driver.id_driver)}
                                             >
@@ -361,8 +361,8 @@ const AdminTrackingView = () => {
                                         <div
                                             key={log.id}
                                             className={`p-2 rounded ${log.type === 'success' ? 'bg-green-50 text-green-800' :
-                                                    log.type === 'error' ? 'bg-red-50 text-red-800' :
-                                                        'bg-gray-50 text-gray-800'
+                                                log.type === 'error' ? 'bg-red-50 text-red-800' :
+                                                    'bg-gray-50 text-gray-800'
                                                 }`}
                                         >
                                             <span className="text-gray-500">[{log.time}]</span> {log.message}
