@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { MapPin, Wifi, WifiOff, Users, Eye, EyeOff } from 'lucide-react';
-import { time } from 'console';
+
 
 // Màu marker cho từng tài xế
 const MARKER_COLORS = [
@@ -14,6 +14,7 @@ const AdminTrackingView = () => {
     const [drivers, setDrivers] = useState([]);
     const [visibleDrivers, setVisibleDrivers] = useState({}); // {DV01: true, DV02: false}
     const [logs, setLogs] = useState([]);
+    const [onlineDrivers, setOnlineDrivers] = useState({});
     const mapRef = useRef(null);
     const markersRef = useRef({});
 
@@ -68,6 +69,15 @@ const AdminTrackingView = () => {
             if (!data.status) {
                 removeDriverMarker(data.id_driver);
             }
+        });
+        socketInstance.on('driver-connected', (data) => {
+            setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: true }));
+            addLog(`🟢 ${data.id_driver} connected`, 'success');
+        });
+
+        socketInstance.on('driver-disconnected', (data) => {
+            setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: false }));
+            addLog(`🔴 ${data.id_driver} disconnected`, 'error');
         });
 
         setSocket(socketInstance);
@@ -400,8 +410,10 @@ const AdminTrackingView = () => {
 
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-2">
+                                                            {/* Dot trạng thái Online/Offline */}
                                                             <div className={`w-3 h-3 rounded-full ${onlineDrivers[driver.id_driver] ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                                                            <p className="font-bold text-gray-800">{driver.id_driver}</p>
+
+                                                            {/* Màu marker */}
                                                             <div
                                                                 className="w-3 h-3 rounded-full"
                                                                 style={{
@@ -409,9 +421,11 @@ const AdminTrackingView = () => {
                                                                 }}
                                                             ></div>
 
-
+                                                            {/* Mã tài xế - CHỈ 1 LẦN */}
                                                             <p className="font-bold text-gray-800">{driver.id_driver}</p>
                                                         </div>
+
+                                                        {/* Các thông tin khác giữ nguyên */}
                                                         <p className="text-sm text-gray-700 mt-1">
                                                             👤 {driver.driver_name || 'Unknown'}
                                                         </p>
