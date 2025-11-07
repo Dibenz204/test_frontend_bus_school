@@ -1,76 +1,3 @@
-// import React from "react";
-// import Header from "@/components/ui/Header";
-// import Footer from "@/components/ui/Footer";
-// const Introduce = () => {
-//   return (
-//     <div className="relative min-h-screen font-sans overflow-x-hidden">
-//       {/* 🔶 Orange Soft Glow Background */}
-//       <div
-//         className="absolute inset-0 -z-10"
-//         style={{
-//           backgroundImage: `radial-gradient(circle at center, #FF7112, transparent 70%)`,
-//           opacity: 0.3,
-//           mixBlendMode: "multiply",
-//         }}
-//       />
-
-//       {/* Header cố định trên cùng */}
-//       <Header />
-
-//       {/* Section Home */}
-//       <section
-//         id="home"
-//         className="min-h-screen flex flex-col items-center justify-center bg-transparent text-center px-6"
-//       >
-//         <h1 className="text-5xl font-bold text-gray-800 mb-4">
-//           Welcome to <span className="text-orange-500">SmartBus</span>
-//         </h1>
-//         <p className="text-gray-700 text-lg max-w-2xl">
-//           Track your school buses in real-time with our smart, secure and
-//           efficient system.
-//         </p>
-//       </section>
-
-//       {/* Section About */}
-//       <section
-//         id="about"
-//         className="min-h-screen flex flex-col items-center justify-center bg-white/70 text-center px-6 backdrop-blur-sm"
-//       >
-//         <h2 className="text-4xl font-bold text-gray-800 mb-4">About Us</h2>
-//         <p className="text-gray-700 max-w-2xl">
-//           Our system ensures safety and efficiency for students and schools.
-//         </p>
-//       </section>
-
-//       {/* Section Menu */}
-//       <section
-//         id="menu"
-//         className="min-h-screen flex flex-col items-center justify-center bg-orange-50/80 text-center px-6 backdrop-blur-sm"
-//       >
-//         <h2 className="text-4xl font-bold text-gray-800 mb-4">Bus Routes</h2>
-//         <p className="text-gray-700 max-w-2xl">
-//           View detailed route maps, schedules, and stops in real time.
-//         </p>
-//       </section>
-
-//       {/* Section Docs */}
-//       <section
-//         id="docs"
-//         className="min-h-screen flex flex-col items-center justify-center bg-white/80 text-center px-6 backdrop-blur-sm"
-//       >
-//         <h2 className="text-4xl font-bold text-gray-800 mb-4">Documentation</h2>
-//         <p className="text-gray-700 max-w-2xl">
-//           Learn how to integrate and use SmartBus for your school network.
-//         </p>
-//       </section>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default Introduce;
-
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -96,7 +23,19 @@ const Introduce = () => {
       />
 
       {/* Header cố định trên cùng */}
-      <Header />
+      <Header
+        variant="normal"
+        menuItems={[
+          { label: t("header.about"), link: "about", linkType: "scroll" },
+          {
+            label: t("header.features"),
+            link: "why-choose-us",
+            linkType: "scroll",
+          },
+          { label: t("header.docs"), link: "docs", linkType: "scroll" },
+        ]}
+        loginButton={true}
+      />
 
       {/* Section Home - Hero Banner */}
       <section
@@ -148,8 +87,12 @@ const Introduce = () => {
                   <span className="text-3xl animate-bounce">🚌</span>
                 </div>
                 <div className="text-left">
-                  <p className="text-gray-900 font-bold text-lg">{t("home.realTimeTracking")}</p>
-                  <p className="text-gray-600 text-sm">{t("home.trackingSystem")}</p>
+                  <p className="text-gray-900 font-bold text-lg">
+                    {t("home.realTimeTracking")}
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    {t("home.trackingSystem")}
+                  </p>
                 </div>
               </div>
 
@@ -252,7 +195,10 @@ const Introduce = () => {
               {/* Icon Circle */}
               <div className="mb-6 flex justify-center">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center shadow-md">
-                  <MapPin className="w-12 h-12 text-[#FF6A2C]" aria-hidden="true" />
+                  <MapPin
+                    className="w-12 h-12 text-[#FF6A2C]"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
 
@@ -272,7 +218,10 @@ const Introduce = () => {
               {/* Icon Circle */}
               <div className="mb-6 flex justify-center">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center shadow-md">
-                  <LayoutDashboard className="w-12 h-12 text-[#FF6A2C]" aria-hidden="true" />
+                  <LayoutDashboard
+                    className="w-12 h-12 text-[#FF6A2C]"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
 
@@ -292,7 +241,10 @@ const Introduce = () => {
               {/* Icon Circle */}
               <div className="mb-6 flex justify-center">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center shadow-md">
-                  <BellRing className="w-12 h-12 text-[#FF6A2C]" aria-hidden="true" />
+                  <BellRing
+                    className="w-12 h-12 text-[#FF6A2C]"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
 
@@ -312,7 +264,10 @@ const Introduce = () => {
               {/* Icon Circle */}
               <div className="mb-6 flex justify-center">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center shadow-md">
-                  <Server className="w-12 h-12 text-[#FF6A2C]" aria-hidden="true" />
+                  <Server
+                    className="w-12 h-12 text-[#FF6A2C]"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
 
@@ -335,10 +290,10 @@ const Introduce = () => {
         id="docs"
         className="min-h-screen flex flex-col items-center justify-center bg-white/80 text-center px-6 backdrop-blur-sm"
       >
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">{t("docs.title")}</h2>
-        <p className="text-gray-700 max-w-2xl">
-          {t("docs.description")}
-        </p>
+        <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          {t("docs.title")}
+        </h2>
+        <p className="text-gray-700 max-w-2xl">{t("docs.description")}</p>
       </section>
       <Footer />
     </div>
