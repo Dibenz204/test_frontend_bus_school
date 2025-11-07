@@ -16,11 +16,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<Home_TrangChu />} /> */}
-          <Route path="/map_component" element={<Introduce />} />
+          <Route path="/" element={<Introduce />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test_parent" element={<Parent />} />
-          <Route path="/" element={<MapComponent />} />
+          {/* <Route path="/map_component" element={<MapComponent />} /> */}
 
           {/*  đi theo cách router navigate đổi url */}
           {/* <Route path="/" element={<Home_TrangChu />} /> */}
@@ -29,17 +29,17 @@ function App() {
 
           <Route path="/parent" element={<ParentPage />} />
 
-    {/* protect driver route */}
-     <Route
+          {/* protect driver route */}
+          <Route
             path="/Taixe"
             element={
               <ProtectedRoute allowedRoles={["Tài xế"]}>
                 <Taixe />
               </ProtectedRoute>
             }
-          />    
-                {/*protect parent route  */}
-            <Route
+          />
+          {/*protect parent route  */}
+          <Route
             path="/PhuHuynh"
             element={
               <ProtectedRoute allowedRoles={["Phụ huynh"]}>
@@ -47,11 +47,11 @@ function App() {
               </ProtectedRoute>
             }
           />
-      
+
           <Route path="/test" element={<Test />} />
 
           {/* protect admin route */}
-             <Route
+          <Route
             path="/test_parent"
             element={
               <ProtectedRoute allowedRoles={["Quản trị viên"]}>
