@@ -9,7 +9,7 @@ import Introduce from "./pages/Introduce";
 import MapComponent from "./components/MapComponent";
 import Taixe from "./pages/Taixe";
 import PhuHuynh from "./pages/PhuHuynh";
-
+import ProtectedRoute from "./components/ui/ProtectedRoute";
 function App() {
   return (
     <>
@@ -25,12 +25,41 @@ function App() {
           {/*  đi theo cách router navigate đổi url */}
           {/* <Route path="/" element={<Home_TrangChu />} /> */}
           <Route path="/" element={<Introduce />} />
-          <Route path="/" element={<ParentPage />} />
-          <Route path="/Taixe" element={<Taixe />} />
-          <Route path="/PhuHuynh" element={<PhuHuynh />} />
           <Route path="/login" element={<LoginPage />} />
+
+          <Route path="/parent" element={<ParentPage />} />
+
+    {/* protect driver route */}
+     <Route
+            path="/Taixe"
+            element={
+              <ProtectedRoute allowedRoles={["Tài xế"]}>
+                <Taixe />
+              </ProtectedRoute>
+            }
+          />    
+                {/*protect parent route  */}
+            <Route
+            path="/PhuHuynh"
+            element={
+              <ProtectedRoute allowedRoles={["Phụ huynh"]}>
+                <PhuHuynh />
+              </ProtectedRoute>
+            }
+          />
+      
           <Route path="/test" element={<Test />} />
-          <Route path="/test_parent" element={<Parent />} />
+
+          {/* protect admin route */}
+             <Route
+            path="/test_parent"
+            element={
+              <ProtectedRoute allowedRoles={["Quản trị viên"]}>
+                <Parent />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </BrowserRouter>
     </>
