@@ -36,4 +36,12 @@ const updateUser = async (userData) => {
     return axios.put(`${API_BASE_URL}/user/api/update-user`, userData);
 };
 
-export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser };
+//update function for login
+const loginUser = async (email, password) => {
+    return axios.post(`${API_BASE_URL}/user/api/login`, {
+        email,
+        password
+    });
+};
+
+export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser, loginUser };
