@@ -127,9 +127,7 @@ const MainLayout = ({ children }) => {
               {/* Ứng dụng bản đồ định tuyến giúp người dùng tra cứu lộ trình, điểm
               dừng, thời gian di chuyển và các tuyến xe buýt một cách nhanh
               chóng, thuận tiện. */}
-              z thêm dòng chữ ngắn gọn đi :)))
             </p>
-            {/* (❌ Xóa hết nút ở đây, để con bên ngoài tự render) */}
           </div>
 
           {/* Cột phải */}

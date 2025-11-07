@@ -1,8 +1,21 @@
-import React from "react";
-import { Mail, Lock } from "lucide-react";
-import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/solid";
-import { Quote } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Mail, Lock, Quote } from "lucide-react";
+
 export default function LoginPage() {
+  const fullText =
+    "“Cảm ơn bạn đã tin tưởng Smart School Bus – cùng nhau mang đến hành trình an toàn và tiện lợi cho học sinh mỗi ngày.”";
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(fullText.substring(0, index + 1));
+      index++;
+      if (index === fullText.length) clearInterval(interval);
+    }, 40); // tốc độ (ms mỗi ký tự)
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col sm:flex-row">
       {/* LEFT: Login form */}
@@ -30,7 +43,7 @@ export default function LoginPage() {
             <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
             <input
               type="password"
-              placeholder="Mật khẩu(tối đa 8 kí tự)"
+              placeholder="Mật khẩu (tối đa 8 kí tự)"
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
           </div>
@@ -53,7 +66,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* RIGHT: Quote Section with modern dark background */}
+      {/* RIGHT: Quote Section */}
       <div className="relative flex items-center justify-center sm:w-1/2 bg-[#0b0b0b] text-white p-12 overflow-hidden">
         {/* Decorative wave background */}
         <svg
@@ -84,17 +97,17 @@ export default function LoginPage() {
 
         {/* Quote content */}
         <div className="relative max-w-md z-10">
-          {/* Quote icon */}
           <div className="bg-[#2b2b2b] p-4 rounded-2xl inline-flex mb-6">
             <Quote className="w-6 h-6 text-white" />
           </div>
-          {/* Quote text */}
-          <p className="text-3xl font-semibold leading-snug mb-6">
-            “Cảm ơn bạn đã tin tưởng Smart School Bus – cùng nhau mang đến hành
-            trình an toàn và tiện lợi cho học sinh mỗi ngày.”
+
+          {/* Typing Text */}
+          <p className="text-3xl font-semibold leading-snug mb-6 min-h-[8rem]">
+            {displayedText}
+            <span className="animate-pulse text-orange-400">|</span>
           </p>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

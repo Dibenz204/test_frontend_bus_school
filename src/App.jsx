@@ -1,25 +1,4 @@
-// import { Toaster } from "sonner";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
-// function App() {
-//   return (
-//     <>
-//       <Toaster richColors />
-
-//       <BrowserRouter>
-//         <Routes>
-// <Route path="/trangchu" element={<Home_TrangChu />} />
-// <Route path="/" element={<Introduce />} />
-// <Route path="/login" element={<LoginPage />} />
-//         </Routes>
-//       </BrowserRouter>
-//     </>
-//   );
-// }
-
-// export default App;
-
+import ParentPage from "./pages/ParentPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Test from "./pages/Test";
@@ -32,45 +11,39 @@ import GPSTrackingComponent from "./components/GPSTrackingComponent";
 import TestGPSLocation from "./components/TestGPSLocation";
 import DriverGPSView from "./components/DriverGPSView"; // ✅ Component tài xế
 import AdminTrackingView from "./components/AdminTrackingView";
+import Taixe from "./pages/Taixe";
+import PhuHuynh from "./pages/PhuHuynh";
 
 function App() {
   return (
     <>
-
-
       <BrowserRouter>
-
         <Routes>
-          {/* <Route path="/" element={<Home_TrangChu />} /> */}
+          {/* Route chính - chỉ giữ 1 route "/" */}
           <Route path="/" element={<Introduce />} />
+
+          {/* Các route khác */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test_parent" element={<Parent />} />
           <Route path="/map_component" element={<MapComponent />} />
 
-
           {/* Trang GPS cho TÀI XẾ - Gửi vị trí realtime */}
-          {/* <Route path="/driver-gps" element={<GPSTrackingComponent />} /> */}
           <Route path="/driver-gps" element={<DriverGPSView />} />
 
           {/* Trang GPS cho ADMIN - Xem tất cả tài xế */}
-          {/* <Route path="/admin-tracking" element={<GPSTrackingComponent />} /> */}
-
-          {/* Trang GPS cho PHỤ HUYNH - Xem xe đưa đón con */}
-          {/* <Route path="/parent-tracking" element={<GPSTrackingComponent />} /> */}
-
           <Route path="/admin-tracking" element={<AdminTrackingView />} />
 
+          {/* Trang cho các role */}
+          <Route path="/Taixe" element={<Taixe />} />
+          <Route path="/PhuHuynh" element={<PhuHuynh />} />
+
+          {/* Route test GPS */}
           <Route path="/test-gps" element={<TestGPSLocation />} />
-
-
-
         </Routes>
       </BrowserRouter>
-
     </>
   );
 }
 
 export default App;
-
