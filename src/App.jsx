@@ -14,6 +14,8 @@ import AdminTrackingView from "./components/AdminTrackingView";
 import Taixe from "./pages/Taixe";
 import PhuHuynh from "./pages/PhuHuynh";
 
+import ProtectedRoute from "./components/ui/ProtectedRoute";
+
 function App() {
   return (
     <>
@@ -25,7 +27,7 @@ function App() {
           {/* Các route khác */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/test_parent" element={<Parent />} />
+          {/* <Route path="/test_parent" element={<Parent />} /> */}
           <Route path="/map_component" element={<MapComponent />} />
 
           {/* Trang GPS cho TÀI XẾ - Gửi vị trí realtime */}
@@ -35,11 +37,40 @@ function App() {
           <Route path="/admin-tracking" element={<AdminTrackingView />} />
 
           {/* Trang cho các role */}
-          <Route path="/Taixe" element={<Taixe />} />
-          <Route path="/PhuHuynh" element={<PhuHuynh />} />
+          {/* <Route path="/Taixe" element={<Taixe />} /> */}
+          {/* <Route path="/PhuHuynh" element={<PhuHuynh />} /> */}
 
           {/* Route test GPS */}
           <Route path="/test-gps" element={<TestGPSLocation />} />
+
+
+          <Route
+            path="/Taixe"
+            element={
+              <ProtectedRoute allowedRoles={["Tài xế"]}>
+                <Taixe />
+              </ProtectedRoute>
+            }
+          />
+          {/*protect parent route  */}
+          <Route
+            path="/PhuHuynh"
+            element={
+              <ProtectedRoute allowedRoles={["Phụ huynh"]}>
+                <PhuHuynh />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/test_parent"
+            element={
+              <ProtectedRoute allowedRoles={["Quản trị viên"]}>
+                <Parent />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </BrowserRouter>
     </>
