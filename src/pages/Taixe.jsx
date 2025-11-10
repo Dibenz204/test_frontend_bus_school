@@ -51,7 +51,7 @@ const Taixe = () => {
             transition={{ duration: 0.3 }}
           >
             {activeSection === "lichlamviec" && <LichLamViec />}
-            {/* {activeSection === "danhsachhocsinh" && <DanhSachHocSinh />} */}
+            {activeSection === "danhsachhocsinh" && <DanhSachHocSinh />}
 
             {activeSection === "baocao" && (
               <div className="bg-white shadow-lg p-6 rounded-2xl">
