@@ -38,17 +38,30 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      // Force resolve React DOM đúng
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react/jsx-runtime']
+    include: ['react', 'react-dom', 'react/jsx-runtime'],
+    // Force pre-bundle React DOM
+    force: true
   },
   build: {
     outDir: 'dist',
     sourcemap: false,
     commonjsOptions: {
       include: [/node_modules/],
-      transformMixedEsModules: true
+      transformMixedEsModules: true,
+      // Thêm này
+      strictRequires: true
+    },
+    // Rolldown specific
+    rollupOptions: {
+      external: [],
+      output: {
+        manualChunks: undefined
+      }
     }
   },
   server: {
