@@ -1,17 +1,16 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "@/components/ui/Header";
-import MainLayout from "@/components/ui/MainLayout"; // ✅ đúng vị trí bạn nói
+import MainLayout from "@/components/ui/MainLayout";
 
 const Home_TrangChu = () => {
-  const navigate = useNavigate(); // ✅ đặt trong component
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen w-full relative bg-white">
       {/* Orange Soft Glow */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 
+        -0"
         style={{
           backgroundImage: `radial-gradient(circle at center, #FF7112, transparent)`,
           opacity: 0.3,
@@ -23,9 +22,11 @@ const Home_TrangChu = () => {
 
       <MainLayout>
         <div className="sm:flex sm:items-center sm:space-x-8 -mt-35">
-          {/* Nút xem bản đồ */}
-          <button className="px-8 py-3 rounded-full bg-[#ff7112] text-white font-semibold border border-[#ffd1b3] shadow-sm hover:bg-[#e85f00] hover:shadow-md hover:scale-105 transition-all duration-300">
-            View Map
+          <button
+            onClick={() => navigate("/Introduce")}
+            className="px-8 py-3 rounded-full bg-[#ff7112] text-white font-semibold border border-[#ffd1b3] shadow-sm hover:bg-[#e85f00] hover:shadow-md hover:scale-105 transition-all duration-300"
+          >
+            Giới thiệu
           </button>
 
           {/* Nút đăng nhập */}
