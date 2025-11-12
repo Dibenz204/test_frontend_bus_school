@@ -47,6 +47,52 @@ export default function LoginPage() {
   };
 
   // Xử lý đăng nhập
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   setErrorMessage("");
+  //   setLoading(true);
+
+  //   try {
+  //     const response = await loginUser(email, password);
+
+  //     if (response.data.errCode === 0) {
+  //       const user = response.data.user;
+
+  //       // ⭐ Lưu thông tin user vào localStorage (luôn lưu nếu đăng nhập thành công)
+  //       localStorage.setItem("userInfo", JSON.stringify(user));
+
+  //       // ⭐ Lưu thêm flag "rememberMe" nếu người dùng chọn
+  //       if (rememberMe) {
+  //         localStorage.setItem("rememberMe", "true");
+  //       }
+
+  //       // Chuyển trang theo role
+  //       switch (user.role) {
+  //         case "Quản trị viên":
+  //           navigate("/test_parent");
+  //           break;
+  //         case "Phụ huynh":
+  //           navigate("/PhuHuynh");
+  //           break;
+  //         case "Tài xế":
+  //           navigate("/Taixe");
+  //           break;
+  //         default:
+  //           setErrorMessage("Vai trò không hợp lệ!");
+  //       }
+  //     } else {
+  //       setErrorMessage(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi đăng nhập:", error);
+  //     setErrorMessage(
+  //       error.response?.data?.message || "Lỗi kết nối đến server!"
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMessage("");
@@ -58,8 +104,15 @@ export default function LoginPage() {
       if (response.data.errCode === 0) {
         const user = response.data.user;
 
+        // ⭐ DEBUG: Kiểm tra user data nhận được
+        console.log("🔍 USER DATA NHẬN ĐƯỢC TỪ LOGIN:", user);
+
         // ⭐ Lưu thông tin user vào localStorage (luôn lưu nếu đăng nhập thành công)
         localStorage.setItem("userInfo", JSON.stringify(user));
+
+        // ⭐ DEBUG: Kiểm tra localStorage sau khi lưu
+        const storedUser = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("💾 USER DATA TRONG LOCALSTORAGE:", storedUser);
 
         // ⭐ Lưu thêm flag "rememberMe" nếu người dùng chọn
         if (rememberMe) {

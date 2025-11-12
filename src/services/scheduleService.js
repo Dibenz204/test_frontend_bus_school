@@ -1,10 +1,21 @@
 import axios from "axios";
 import API_BASE_URL from "../config/config.js";
 
-const getAllSchedules = async (inputId) => {
-    return axios.get(`${API_BASE_URL}/api/schedule/get-schedules`, {
-        params: { id_schedule: inputId },
-    });
+// const getAllSchedules = async (inputId) => {
+//     return axios.get(`${API_BASE_URL}/api/schedule/get-schedules`, {
+//         params: { id_schedule: inputId },
+//     });
+// };
+
+const getAllSchedules = async (inputId, filters = {}) => {
+    const params = { id_schedule: inputId };
+
+    // Thêm filters vào params nếu có
+    if (filters.id_driver) params.id_driver = filters.id_driver;
+    if (filters.date) params.date = filters.date;
+    if (filters.status) params.status = filters.status;
+
+    return axios.get(`${API_BASE_URL}/api/schedule/get-schedules`, { params });
 };
 
 const getScheduleById = async (scheduleId) => {
