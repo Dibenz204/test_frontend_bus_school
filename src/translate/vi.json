@@ -5,6 +5,232 @@
         "docs": "Tài liệu",
         "login": "Đăng nhập"
     },
+    "header_driver": {
+        "hello": "Chào",
+        "logout": "Đăng xuất",
+        "role": "Vai trò"
+    },
+    "driverPage": {
+        "menu": {
+            "workSchedule": "Lịch làm việc",
+            "studentList": "Danh sách học sinh",
+            "pickupReport": "Báo cáo đón trả",
+            "route": "Tuyến đường"
+        },
+        "report": {
+            "title": "Báo cáo tình trạng đón trả",
+            "description": "Báo cáo học sinh đã đón/trả, học sinh vắng hoặc trường hợp đặc biệt."
+        },
+        "logs": {
+            "selectedItem": "Đã chọn mục:"
+        }
+    },
+    "workSchedule": {
+        "title": "Lịch làm việc tuần này",
+        "loading": {
+            "loadingWorkSchedule": "Đang tải lịch làm việc..."
+        },
+        "shift": {
+            "morning": "Sáng",
+            "afternoon": "Chiều",
+            "evening": "Tối"
+        },
+        "status": {
+            "operating": "Vận hành",
+            "scheduled": "Đã lên lịch",
+            "completed": "Hoàn thành"
+        },
+        "tableHeaders": {
+            "date": "Ngày",
+            "shift": "Ca",
+            "workTime": "Giờ làm",
+            "route": "Tuyến đường",
+            "driverName": "Tên tài xế",
+            "status": "Trạng thái"
+        },
+        "unknown": {
+            "route": "Chưa xác định",
+            "driver": "Chưa xác định"
+        },
+        "noSchedules": {
+            "title": "Không có lịch làm việc trong tuần này",
+            "description": "Vui lòng kiểm tra lại hoặc liên hệ quản lý"
+        },
+        "statistics": {
+            "totalShifts": "Tổng số ca"
+        },
+        "footer": {
+            "note": "Lịch làm việc được cập nhật tự động theo tuần. Dòng màu xanh nhạt là ca đang vận hành."
+        },
+        "errors": {
+            "notLoggedIn": "Chưa đăng nhập",
+            "loadData": "Lỗi khi lấy dữ liệu:"
+        },
+        "info": {
+            "allSchedulesData": "All schedules data:",
+            "scheduleData": "Schedule data:",
+            "weeklySchedules": "Schedules trong tuần:",
+            "updatingRealTimeStatus": "Cập nhật status real-time..."
+        }
+    },
+    "mapDriver": {
+        "errors": {
+            "getUserInfo": "Lỗi khi lấy thông tin user:",
+            "mapNotReady": "Map container chưa sẵn sàng",
+            "mapAlreadyInitialized": "Map đã được khởi tạo trước đó",
+            "mapInitialization": "Lỗi khởi tạo map:",
+            "notLoggedIn": "Chưa đăng nhập",
+            "loadSchedule": "Lỗi khi load lịch trình driver:",
+            "mapNotReadyForDrawing": "Map chưa sẵn sàng để vẽ route",
+            "noRouteData": "Không có dữ liệu route",
+            "needTwoStops": "Route cần ít nhất 2 điểm",
+            "drawingRoute": "Lỗi vẽ route:"
+        },
+        "info": {
+            "initializingMap": "Đang khởi tạo map...",
+            "mapInitialized": "Map đã được khởi tạo thành công",
+            "cleaningUp": "Cleaning up map...",
+            "driverId": "Driver ID:",
+            "today": "Ngày hôm nay:",
+            "allSchedulesReceived": "Tất cả schedules nhận được:",
+            "selectedSchedule": "Schedule được chọn:",
+            "drawingRoute": "Đang vẽ route:",
+            "noSchedulesToday": "Không có lịch trình nào cho tài xế này trong ngày hôm nay",
+            "drawingRouteAndStops": "Đang vẽ route và các trạm",
+            "routeHasStops": "Route có điểm dừng:",
+            "routeDrawn": "Đã vẽ route và điểm dừng"
+        },
+        "controls": {
+            "backToSchool": "Về trường"
+        },
+        "driverLocation": {
+            "title": "Vị trí của bạn",
+            "description": "Đang trên tuyến đường"
+        },
+        "stopTypes": {
+            "first": "Điểm đầu",
+            "last": "Điểm cuối",
+            "noDescription": "Không có mô tả",
+            "stopNumber": "Điểm dừng {{current}}/{{total}}",
+            "lat": "Lat:",
+            "lng": "Lng:"
+        },
+        "loading": {
+            "loadingSchedule": "Đang tải lịch trình...",
+            "initializingMap": "Đang khởi tạo bản đồ..."
+        },
+        "scheduleInfo": {
+            "yourSchedule": "Lịch trình của bạn",
+            "route": "Tuyến",
+            "time": "Thời gian",
+            "date": "Ngày",
+            "status": "Trạng thái",
+            "otherSchedules": "Các lịch trình khác trong ngày ({{count}})",
+            "note": "Chỉ hiển thị route và các điểm dừng của bạn"
+        },
+        "scheduleStatus": {
+            "running": "ĐANG CHẠY"
+        },
+        "noSchedule": {
+            "title": "Không có lịch trình nào hôm nay",
+            "description": "Bạn không có lịch trình vận hành nào trong ngày hôm nay.",
+            "tryAgain": "Thử lại",
+            "suggestions": {
+                "title": "Gợi ý",
+                "items": "• 📋 Kiểm tra lại lịch trình trong phần Quản lý Lịch trình<br/>• 👨‍💼 Liên hệ quản lý nếu cần được phân công lịch mới<br/>• 🔐 Đảm bảo bạn đã đăng nhập đúng tài khoản tài xế<br/>• ⏰ Lịch trình thường được cập nhật trước 7:00 sáng"
+            }
+        }
+    },
+    "studentList": {
+        "title": "Danh sách học sinh trên tuyến đường",
+        "loading": {
+            "loadingData": "Đang tải dữ liệu..."
+        },
+        "noActiveSchedules": {
+            "title": "Không có lịch trình đang VẬN HÀNH hdgdadg",
+            "description": "Hiện tại không có lịch trình nào ở trạng thái \"Vận hành\" cho ngày {{date}}."
+        },
+        "noSuitableSchedule": {
+            "title": "Chưa có lịch trình phù hợp",
+            "description": "Đang chờ lịch trình Vận hành phù hợp với thời gian hiện tại."
+        },
+        "buttons": {
+            "tryAgain": "Thử lại",
+            "dropOff": "Trả khách",
+            "updateData": "Cập nhật dữ liệu"
+        },
+        "scheduleSelection": {
+            "title": "Chọn lịch trình đang VẬN HÀNH",
+            "id": "ID"
+        },
+        "currentSchedule": {
+            "operating": "ĐANG VẬN HÀNH",
+            "date": "Ngày",
+            "time": "Giờ",
+            "route": "Tuyến đường",
+            "driver": "Tài xế"
+        },
+        "tableHeaders": {
+            "number": "STT",
+            "studentName": "Tên học sinh",
+            "busstop": "Busstop",
+            "mssv": "MSSV",
+            "status": "Trạng thái",
+            "actions": "Thao tác"
+        },
+        "status": {
+            "present": "Có mặt",
+            "pickedUp": "Đã đưa/đón",
+            "waiting": "Đang chờ"
+        },
+        "noStudentsInSchedule": "Không có học sinh nào trong lịch trình Vận hành hiện tại",
+        "scanner": {
+            "title": "Quét mã học sinh (MSSV)",
+            "identified": "Đã nhận dạng",
+            "studentGotOffReloading": "Học sinh đã xuống xe - Đang reload...",
+            "attendanceSuccessReloading": "Đã điểm danh thành công! - Đang reload...",
+            "statusUpdatedReloading": "Trạng thái đã được cập nhật - Đang reload...",
+            "studentNotFound": "Không tìm thấy học sinh",
+            "mssvNotExistReloading": "MSSV không tồn tại trong lịch trình này - Đang reload...",
+            "instruction": "Đưa mã vạch MSSV trước camera để quét..."
+        },
+        "statistics": {
+            "total": "Tổng số",
+            "students": "học sinh"
+        },
+        "info": {
+            "currentTime": "Thời gian hiện tại: {{time}}",
+            "activeSchedulesToday": "Các lịch trình VẬN HÀNH trong ngày:",
+            "selectedActiveSchedule": "Chọn lịch đang VẬN HÀNH:",
+            "selectedFirstActiveSchedule": "Chọn lịch VẬN HÀNH đầu tiên:",
+            "searchingSchedules": "Tìm lịch trình cho ngày:",
+            "ofDriver": "của tài xế:",
+            "allSchedulesReceived": "Tất cả schedules nhận được:",
+            "todaySchedulesCount": "Số lịch trình hôm nay:",
+            "activeSchedulesCount": "Số lịch trình VẬN HÀNH:",
+            "studentList": "Danh sách học sinh:",
+            "students": "học sinh",
+            "studentGotOff": "Học sinh đã xuống xe:",
+            "studentAlreadyPresent": "Học sinh đã có mặt:"
+        },
+        "warnings": {
+            "activeScheduleNoStudents": "Schedule VẬN HÀNH có nhưng không có học sinh",
+            "noSuitableActiveSchedule": "Có lịch VẬN HÀNH nhưng không tìm thấy lịch phù hợp",
+            "noActiveSchedules": "Không có lịch trình nào ở trạng thái VẬN HÀNH",
+            "noSchedulesAfterFilter": "Không tìm thấy schedule cho ngày hôm nay sau khi filter",
+            "noSchedulesToday": "Không có lịch trình nào cho tài xế trong ngày hôm nay"
+        },
+        "errors": {
+            "notDriverOrNotLoggedIn": "Không phải tài xế hoặc chưa đăng nhập",
+            "loadData": "Lỗi khi lấy dữ liệu:",
+            "cannotSelectNonActive": "Không thể chọn lịch trình không ở trạng thái Vận hành",
+            "updateStatus": "Lỗi khi cập nhật trạng thái:"
+        },
+        "success": {
+            "updatedStatus": "Đã cập nhật trạng thái học sinh",
+            "to": "thành"
+        }
+    },
     "home": {
         "title": "An Toàn Nâng Cao với SmartBus",
         "description": "Theo dõi xe buýt trường học theo thời gian thực với bảng điều khiển thống nhất cho tuyến đường, điểm dừng và lịch trình. Cảnh báo tức thì giúp phụ huynh, tài xế và quản trị viên nhà trường đồng bộ — với cập nhật trực tiếp nhanh tới ~3 giây.",

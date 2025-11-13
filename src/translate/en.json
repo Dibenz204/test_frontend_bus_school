@@ -5,43 +5,257 @@
         "docs": "Documentation",
         "login": "Sign In"
     },
-    "home": {
-        "title": "Enhanced Safety with SmartBus",
-        "description": "Track school buses in real time with a unified dashboard for routes, stops, and schedules. Instant alerts keep parents, drivers, and school admins in sync—with live updates as fast as ~3 seconds.",
-        "viewMap": "View Map",
-        "realTimeTracking": "Real-time",
-        "trackingSystem": "tracking system",
-        "updates": "updates"
+    "header_driver": {
+        "hello": "Hello",
+        "logout": "Log out",
+        "role": "Role"
     },
-    "about": {
-        "overline": "ABOUT US",
-        "title": "Built for Safety, Powered by Real-Time Tracking",
-        "paragraph1": "SmartBus keeps schools, drivers, and families in sync. Our SSB 1.0 platform unifies bus schedules, routes, and student rosters into one dashboard—replacing scattered phone calls and spreadsheets. Real-time GPS updates (≈3-second latency) and role-based alerts improve transparency and peace of mind.",
-        "paragraph2": "Whether you're managing a fleet or tracking your child's ride, SmartBus scales for daily operations—300+ buses concurrently—with built-in driver assignments, stop lists, en route notifications, and incident reporting.",
-        "learnMore": "Learn More"
-    },
-    "whyChooseUs": {
-        "overline": "WHY CHOOSE US",
-        "title": "Confidence On Every Trip",
-        "card1": {
-            "title": "Real-Time GPS Tracking",
-            "description": "View live bus locations with route progress and stop distances—updates refresh in ~3 seconds for accurate arrival times."
+    "driverPage": {
+        "menu": {
+            "workSchedule": "Work Schedule",
+            "studentList": "Student List",
+            "pickupReport": "Pickup Report",
+            "route": "Route"
         },
-        "card2": {
-            "title": "Unified Operations",
-            "description": "One dashboard for schedules, routes, drivers, and student lists—goodbye to chains of calls and scattered spreadsheets."
+        "report": {
+            "title": "Pickup/Drop-off Status Report",
+            "description": "Report students picked up/dropped off, absent students, or special cases."
         },
-        "card3": {
-            "title": "Smart Alerts for Everyone",
-            "description": "Role-based notifications keep parents, drivers, and school admins in sync—updates on arrivals, delays, or incidents."
-        },
-        "card4": {
-            "title": "Built to Scale",
-            "description": "Reliable performance for daily operations—supports tracking 300+ buses concurrently without missing a beat."
+        "logs": {
+            "selectedItem": "Selected item:"
         }
     },
-    "docs": {
-        "title": "Documentation Guide",
-        "description": "Learn how to integrate and use SmartBus for your school network."
+    "workSchedule": {
+        "title": "Work Schedule This Week",
+        "loading": {
+            "loadingWorkSchedule": "Loading work schedule..."
+        },
+        "shift": {
+            "morning": "Morning",
+            "afternoon": "Afternoon",
+            "evening": "Evening"
+        },
+        "status": {
+            "operating": "Operating",
+            "scheduled": "Scheduled",
+            "completed": "Completed"
+        },
+        "tableHeaders": {
+            "date": "Date",
+            "shift": "Shift",
+            "workTime": "Work Time",
+            "route": "Route",
+            "driverName": "Driver Name",
+            "status": "Status"
+        },
+        "unknown": {
+            "route": "Undefined",
+            "driver": "Undefined"
+        },
+        "noSchedules": {
+            "title": "No work schedules this week",
+            "description": "Please check again or contact manager"
+        },
+        "statistics": {
+            "totalShifts": "Total shifts"
+        },
+        "footer": {
+            "note": "Work schedule is automatically updated weekly. Light green rows are currently operating shifts."
+        },
+        "errors": {
+            "notLoggedIn": "Not logged in",
+            "loadData": "Error loading data:"
+        },
+        "info": {
+            "allSchedulesData": "All schedules data:",
+            "scheduleData": "Schedule data:",
+            "weeklySchedules": "Weekly schedules:",
+            "updatingRealTimeStatus": "Updating real-time status..."
+        }
+    },
+    "studentList": {
+        "title": "Student List on Route",
+        "loading": {
+            "loadingData": "Loading data..."
+        },
+        "noActiveSchedules": {
+            "title": "No active operating schedules",
+            "description": "Currently no schedules in \"Operating\" status for date {{date}}."
+        },
+        "noSuitableSchedule": {
+            "title": "No Suitable Schedule Yet",
+            "description": "Waiting for suitable Operating schedule for current time."
+        },
+        "buttons": {
+            "tryAgain": "Try Again",
+            "dropOff": "Drop Off",
+            "updateData": "Update Data"
+        },
+        "scheduleSelection": {
+            "title": "Select Operating Schedule",
+            "id": "ID"
+        },
+        "currentSchedule": {
+            "operating": "OPERATING",
+            "date": "Date",
+            "time": "Time",
+            "route": "Route",
+            "driver": "Driver"
+        },
+        "tableHeaders": {
+            "number": "No.",
+            "studentName": "Student Name",
+            "busstop": "Busstop",
+            "mssv": "MSSV",
+            "status": "Status",
+            "actions": "Actions"
+        },
+        "status": {
+            "present": "Present",
+            "pickedUp": "Picked Up/Dropped Off",
+            "waiting": "Waiting"
+        },
+        "noStudentsInSchedule": "No students in current Operating schedule",
+        "scanner": {
+            "title": "Scan Student Code (MSSV)",
+            "identified": "Identified",
+            "studentGotOffReloading": "Student got off the bus - Reloading...",
+            "attendanceSuccessReloading": "Attendance successful! - Reloading...",
+            "statusUpdatedReloading": "Status updated - Reloading...",
+            "studentNotFound": "Student not found",
+            "mssvNotExistReloading": "MSSV does not exist in this schedule - Reloading...",
+            "instruction": "Place MSSV barcode in front of camera to scan..."
+        },
+        "statistics": {
+            "total": "Total",
+            "students": "students"
+        },
+        "info": {
+            "currentTime": "Current time: {{time}}",
+            "activeSchedulesToday": "OPERATING schedules today:",
+            "selectedActiveSchedule": "Selected OPERATING schedule:",
+            "selectedFirstActiveSchedule": "Selected first OPERATING schedule:",
+            "searchingSchedules": "Searching schedules for date:",
+            "ofDriver": "of driver:",
+            "allSchedulesReceived": "All schedules received:",
+            "todaySchedulesCount": "Today's schedules count:",
+            "activeSchedulesCount": "OPERATING schedules count:",
+            "studentList": "Student list:",
+            "students": "students",
+            "studentGotOff": "Student got off:",
+            "studentAlreadyPresent": "Student already present:"
+        },
+        "warnings": {
+            "activeScheduleNoStudents": "Schedule OPERATING but no students",
+            "noSuitableActiveSchedule": "Has OPERATING schedules but no suitable schedule found",
+            "noActiveSchedules": "No schedules in OPERATING status",
+            "noSchedulesAfterFilter": "No schedules found for today after filter",
+            "noSchedulesToday": "No schedules for driver today"
+        },
+        "errors": {
+            "notDriverOrNotLoggedIn": "Not driver or not logged in",
+            "loadData": "Error loading data:",
+            "cannotSelectNonActive": "Cannot select non-Operating schedule",
+            "updateStatus": "Error updating status:"
+        },
+        "success": {
+            "updatedStatus": "Updated student status",
+            "to": "to"
+        }
+    },
+    "mapDriver": {
+        "errors": {
+            "getUserInfo": "Error getting user info:",
+            "mapNotReady": "Map container not ready",
+            "mapAlreadyInitialized": "Map already initialized",
+            "mapInitialization": "Map initialization error:",
+            "notLoggedIn": "Not logged in",
+            "loadSchedule": "Error loading driver schedule:",
+            "mapNotReadyForDrawing": "Map not ready for drawing route",
+            "noRouteData": "No route data",
+            "needTwoStops": "Route needs at least 2 points",
+            "drawingRoute": "Error drawing route:"
+        },
+        "info": {
+            "initializingMap": "Initializing map...",
+            "mapInitialized": "Map initialized successfully",
+            "cleaningUp": "Cleaning up map...",
+            "driverId": "Driver ID:",
+            "today": "Today:",
+            "allSchedulesReceived": "All schedules received:",
+            "selectedSchedule": "Selected schedule:",
+            "drawingRoute": "Drawing route:",
+            "noSchedulesToday": "No schedules for this driver today",
+            "drawingRouteAndStops": "Drawing route and stops",
+            "routeHasStops": "Route has stops:",
+            "routeDrawn": "Drawn route and stops"
+        },
+        "controls": {
+            "backToSchool": "Back to School"
+        },
+        "driverLocation": {
+            "title": "Your Location",
+            "description": "On the route"
+        },
+        "stopTypes": {
+            "first": "First Stop",
+            "last": "Last Stop",
+            "noDescription": "No description",
+            "stopNumber": "Stop {{current}}/{{total}}",
+            "lat": "Lat:",
+            "lng": "Lng:"
+        },
+        "loading": {
+            "loadingSchedule": "Loading schedule...",
+            "initializingMap": "Initializing map..."
+        },
+        "scheduleInfo": {
+            "yourSchedule": "Your Schedule",
+            "route": "Route",
+            "time": "Time",
+            "date": "Date",
+            "status": "Status",
+            "otherSchedules": "Other schedules today ({{count}})",
+            "note": "Only showing your route and stops"
+        },
+        "home": {
+            "title": "Enhanced Safety with SmartBus",
+            "description": "Track school buses in real time with a unified dashboard for routes, stops, and schedules. Instant alerts keep parents, drivers, and school admins in sync—with live updates as fast as ~3 seconds.",
+            "viewMap": "View Map",
+            "realTimeTracking": "Real-time",
+            "trackingSystem": "tracking system",
+            "updates": "updates"
+        },
+        "about": {
+            "overline": "ABOUT US",
+            "title": "Built for Safety, Powered by Real-Time Tracking",
+            "paragraph1": "SmartBus keeps schools, drivers, and families in sync. Our SSB 1.0 platform unifies bus schedules, routes, and student rosters into one dashboard—replacing scattered phone calls and spreadsheets. Real-time GPS updates (≈3-second latency) and role-based alerts improve transparency and peace of mind.",
+            "paragraph2": "Whether you're managing a fleet or tracking your child's ride, SmartBus scales for daily operations—300+ buses concurrently—with built-in driver assignments, stop lists, en route notifications, and incident reporting.",
+            "learnMore": "Learn More"
+        },
+        "whyChooseUs": {
+            "overline": "WHY CHOOSE US",
+            "title": "Confidence On Every Trip",
+            "card1": {
+                "title": "Real-Time GPS Tracking",
+                "description": "View live bus locations with route progress and stop distances—updates refresh in ~3 seconds for accurate arrival times."
+            },
+            "card2": {
+                "title": "Unified Operations",
+                "description": "One dashboard for schedules, routes, drivers, and student lists—goodbye to chains of calls and scattered spreadsheets."
+            },
+            "card3": {
+                "title": "Smart Alerts for Everyone",
+                "description": "Role-based notifications keep parents, drivers, and school admins in sync—updates on arrivals, delays, or incidents."
+            },
+            "card4": {
+                "title": "Built to Scale",
+                "description": "Reliable performance for daily operations—supports tracking 300+ buses concurrently without missing a beat."
+            }
+        },
+        "docs": {
+            "title": "Documentation Guide",
+            "description": "Learn how to integrate and use SmartBus for your school network."
+        }
     }
 }

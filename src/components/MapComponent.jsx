@@ -897,7 +897,6 @@ const MapComponent = () => {
                 )}
 
                 {/* Chọn Route để Edit */}
-                {/* Chọn Route để Edit */}
                 {!isCreateMode && (
                     <div>
                         <label
@@ -1095,20 +1094,6 @@ const MapComponent = () => {
                     </div>
                 </div>
 
-                {/* Hướng dẫn */}
-                <div style={{
-                    padding: "12px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "4px",
-                    fontSize: "12px",
-                    color: "#495057"
-                }}>
-                    <b>💡 Hướng dẫn:</b><br />
-                    • <b>Chọn route</b> → Bấm <b>Sửa</b><br />
-                    • <b>Click trạm</b> để thêm/bỏ<br />
-                    • <b>Tick checkbox</b> để hiện route<br />
-                    • <b>Click map</b> để thêm trạm mới
-                </div>
             </div>
         </div>
     );

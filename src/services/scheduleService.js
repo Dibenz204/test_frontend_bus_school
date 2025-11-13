@@ -47,11 +47,18 @@ const updateStudentPickupStatus = async (scheduleId, studentId, status) => {
     });
 };
 
+const getSchedulesByDriver = async (idDriver) => {
+    return axios.get(`${API_BASE_URL}/api/schedule/get-schedule-by-driver`, {
+        params: { id_driver: idDriver }
+    });
+};
+
 export {
     getAllSchedules,
     getScheduleById,
     createNewSchedule,
     updateSchedule,
     deleteSchedule,
-    updateStudentPickupStatus
+    updateStudentPickupStatus,
+    getSchedulesByDriver
 };
