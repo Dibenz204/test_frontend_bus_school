@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { MapPin, Navigation, Power, Wifi, WifiOff } from 'lucide-react';
@@ -24,46 +26,7 @@ const DriverGPSView = () => {
         }, ...prev].slice(0, 15));
     };
 
-    // Socket.IO Connection
-    // useEffect(() => {
-    //     const SOCKET_URL = window.location.hostname === 'localhost'
-    //         ? 'http://localhost:5001'
-    //         : 'https://be-bus-school.onrender.com';
-
-    //     addLog(`🔌 Đang kết nối tới ${SOCKET_URL}/gps...`, 'info');
-
-    //     const socketInstance = io(`${SOCKET_URL}/gps`, {
-    //         transports: ['websocket', 'polling'],
-    //         reconnection: true,
-    //         reconnectionDelay: 1000,
-    //         reconnectionAttempts: 5
-    //     });
-
-    //     socketInstance.on('connect', () => {
-    //         setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: true }));
-    //         addLog(`🟢 ${data.id_driver} connected`, 'success');
-    //         // addLog(`✅ Socket connected: ${socketInstance.id}`, 'success');
-    //         setIsConnected(true);
-
-    //         socketInstance.emit('register-driver', {
-    //             id_driver: driverId
-    //         });
-    //     });
-
-    //     socketInstance.on('disconnect', () => {
-    //         setOnlineDrivers(prev => ({ ...prev, [data.id_driver]: false }));
-    //         addLog(`🔴 ${data.id_driver} disconnected`, 'error');
-    //         // addLog('❌ Socket disconnected', 'error');
-    //         // setIsConnected(false);
-    //     });
-
-    //     setSocket(socketInstance);
-
-    //     return () => {
-    //         socketInstance.disconnect();
-    //     };
-    // }, []);
-
+    //Socket io connect
     useEffect(() => {
         const SOCKET_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:5001'
