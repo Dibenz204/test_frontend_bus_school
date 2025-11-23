@@ -39,7 +39,7 @@ export default function LoginPage() {
   const handleBackToRole = () => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const roleRoutes = {
-      "Quản trị viên": "/test_parent",
+      "Quản trị viên": "/Admin",
       "Phụ huynh": "/PhuHuynh",
       "Tài xế": "/Taixe",
     };
@@ -122,7 +122,7 @@ export default function LoginPage() {
         // Chuyển trang theo role
         switch (user.role) {
           case "Quản trị viên":
-            navigate("/test_parent");
+            navigate("/Admin");
             break;
           case "Phụ huynh":
             navigate("/PhuHuynh");

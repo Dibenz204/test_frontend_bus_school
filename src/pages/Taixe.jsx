@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "@/components/ui/Header";
 import { useTranslation } from "react-i18next";
-import LichLamViec from "@/components/ui/LichLamViec";
-import DanhSachHocSinh from "@/components/ui/DanhSachHocSinh";
-import BaoCaoSuCoXe from "@/components/ui/BaoCaoSuCoXe";
-import Map_Driver from "@/components/ui/Map_Driver";
+import LichLamViec from "@/components/Driver_UI/LichLamViec";
+import DanhSachHocSinh from "@/components/Driver_UI/DanhSachHocSinh";
+import BaoCaoSuCoXe from "@/components/Driver_UI/BaoCaoSuCoXe";
+import Map_Driver from "@/components/Driver_UI/Map_Driver";
 import { io } from 'socket.io-client';
 
 const Taixe = () => {
@@ -187,7 +187,7 @@ const Taixe = () => {
       />
 
       {/* GPS Status Indicator - Fixed ở góc trên phải */}
-      <div className="fixed top-20 right-6 z-40 bg-white rounded-lg shadow-lg p-3 border-2 border-green-500">
+      {/* <div className="fixed top-20 right-6 z-40 bg-white rounded-lg shadow-lg p-3 border-2 border-green-500">
         <div className="flex items-center gap-2">
           <div className={`w-3 h-3 rounded-full ${isGPSActive && isConnected ? 'bg-green-500 animate-pulse' : 'bg-gray-300'}`}></div>
           <span className="text-sm font-semibold">
@@ -199,7 +199,7 @@ const Taixe = () => {
             📍 {currentLocation.lat.toFixed(6)}, {currentLocation.lng.toFixed(6)}
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* MAIN CONTENT */}
       <main className="flex-1 p-8 mt-8 overflow-y-auto">

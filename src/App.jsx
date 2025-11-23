@@ -84,6 +84,7 @@ import ParentPage from "./pages/ParentPage";
 import Taixe from "./pages/Taixe";
 import PhuHuynh from "./pages/PhuHuynh";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -109,14 +110,14 @@ function App() {
           {/* Protected Routes với phân quyền */}
 
           {/* Route cho Phụ huynh */}
-          <Route
+          {/* <Route
             path="/parent"
             element={
               <ProtectedRoute allowedRoles={["Phụ huynh"]}>
                 <ParentPage />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           <Route
             path="/PhuHuynh"
@@ -131,7 +132,7 @@ function App() {
           <Route
             path="/Taixe"
             element={
-              <ProtectedRoute allowedRoles={["Tài xế"]}>?
+              <ProtectedRoute allowedRoles={["Tài xế"]}>
                 <Taixe />
               </ProtectedRoute>
             }
@@ -142,7 +143,7 @@ function App() {
             path="/admin"
             element={
               <ProtectedRoute allowedRoles={["Quản trị viên"]}>
-                <Parent /> {/* Giữ nguyên component Parent cho admin */}
+                <Admin />
               </ProtectedRoute>
             }
           />

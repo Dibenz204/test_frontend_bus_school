@@ -11,9 +11,15 @@ const getAllBusStops = async (visibleFilter) => {
     return axios.get(`${API_BASE_URL}/api/bus-stop/get-all-bus-stops`, { params });
 };
 
+// const deleteBusStop = async (id) => {
+//     return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop`, {
+//         params: { id }
+//     });
+// };
+
 const deleteBusStop = async (id) => {
     return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop`, {
-        params: { id }
+        params: { id: id }  // ĐÚNG: dùng params object
     });
 };
 

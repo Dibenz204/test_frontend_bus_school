@@ -1,106 +1,4 @@
-// import React, { useState } from "react";
-// import Header from "@/components/ui/Header";
-// import LiveMap from "@/components/LiveMap";
-// import { useTranslation } from "react-i18next";
 
-// const ParentPage = () => {
-//   const { t } = useTranslation();
-
-//   const [activeSection, setActiveSection] = useState("dashboard");
-
-//   const handleMenuClick = (section) => {
-//     setActiveSection(section);
-//   };
-
-//   return (
-//     <div className="min-h-screen flex flex-col">
-//       {/* Header */}
-//       <Header
-//         variant="parent"
-//         menuItems={[
-//           {
-//             label: t("Phụ huynh"),
-//             link: "phuhuynh",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Tài xế"),
-//             link: "taixe",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Học sinh"),
-//             link: "hocsinh",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Tuyến đường"),
-//             link: "tuyenduong",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Đánh giá"),
-//             link: "danhgia",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Lịch chạy"),
-//             link: "lichchay",
-//             linkType: "section",
-//           },
-//           {
-//             label: t("Thông báo"),
-//             link: "thongbao",
-//             linkType: "section",
-//           },
-//         ]}
-//         onMenuClick={handleMenuClick}
-//         // loginButton={false}
-//         showLogin={false}
-//         showLanguage={false}
-//       />
-
-//       {/* Nội dung thay đổi theo section */}
-//       <main className="flex-1 p-8">
-//         {activeSection === "phuhuynh" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">day la trang phu huynh</h1>
-//           </div>
-//         )}
-
-//         {activeSection === "taixe" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">day la trang taixe</h1>
-//             {/* <LiveMap /> Hiển thị bản đồ con */}
-//           </div>
-//         )}
-
-//         {activeSection === "hocsinh" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">day la trang hoc sinh</h1>
-//           </div>
-//         )}
-//         {activeSection === "tuyeduong" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">tuyen duong</h1>
-//           </div>
-//         )}
-//         {activeSection === "lichchay" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">day la trang lichchay</h1>
-//           </div>
-//         )}
-//         {activeSection === "thongbao" && (
-//           <div>
-//             <h1 className="text-3xl font-bold">day la trang thongbao</h1>
-//           </div>
-//         )}
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default ParentPage;
 
 import React, { useState, useEffect } from "react";
 import Header from "@/components/ui/Header";
@@ -136,7 +34,7 @@ const ParentPage = () => {
         "https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d92a40a8e.mp3?filename=notification-2-126517.mp3"
       );
       audio.volume = 0.3;
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
     };
 
     playSound();
@@ -199,9 +97,8 @@ const ParentPage = () => {
 
       {/* 🚍 Cục thông báo nổi */}
       <div
-        className={`fixed right-4 bottom-4 sm:right-8 sm:bottom-8 bg-orange-500 text-white px-5 py-3 sm:px-6 sm:py-4 rounded-2xl shadow-lg font-medium text-sm sm:text-base w-[90%] sm:w-auto max-w-sm transition-all duration-500 transform ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
+        className={`fixed right-4 bottom-4 sm:right-8 sm:bottom-8 bg-orange-500 text-white px-5 py-3 sm:px-6 sm:py-4 rounded-2xl shadow-lg font-medium text-sm sm:text-base w-[90%] sm:w-auto max-w-sm transition-all duration-500 transform ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
       >
         🚍 {currentNotice}
       </div>

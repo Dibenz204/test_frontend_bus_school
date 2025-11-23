@@ -8,7 +8,8 @@
     "header_driver": {
         "hello": "Chào",
         "logout": "Đăng xuất",
-        "role": "Vai trò"
+        "role": "Vai trò",
+        "returnYourRole": "Quay lại vai trò"
     },
     "driverPage": {
         "menu": {
@@ -147,7 +148,7 @@
             "loadingData": "Đang tải dữ liệu..."
         },
         "noActiveSchedules": {
-            "title": "Không có lịch trình đang VẬN HÀNH hdgdadg",
+            "title": "Không có lịch trình đang vận hành",
             "description": "Hiện tại không có lịch trình nào ở trạng thái \"Vận hành\" cho ngày {{date}}."
         },
         "noSuitableSchedule": {
