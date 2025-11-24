@@ -4,7 +4,9 @@ import { useTranslation } from "react-i18next";
 import AdminDashboard from "@/components/Admin/AdminDashboard";
 import UserManagement from "@/components/Admin/UserManagement";
 import RouteManagement from "@/components/Admin/RouteManagement";
-
+import StudentManagement from "@/components/Admin/StudentManagement";
+import ScheduleManagement from "@/components/Admin/ScheduleManagement";
+import Observation from "@/components/Admin/Observation";
 
 const Admin = () => {
   const { t } = useTranslation();
@@ -58,8 +60,8 @@ const Admin = () => {
         return <StudentManagement />;
       case "schedule-management":
         return <ScheduleManagement />;
-      case "obsrvation":
-        return <Obsrvation />;
+      case "observation":
+        return <Observation />;
       default:
         return <UserManagement />;
     }
@@ -75,7 +77,7 @@ const Admin = () => {
           { label: "Người dùng", link: "user-management", linkType: "section" },
           { label: "Tuyến đường", link: "route-management", linkType: "section" },
           { label: "Học sinh", link: "student-management", linkType: "section" },
-          { label: "Lịch trình", link: "schedule-management", linkType: "section" },
+          { label: "Bus & Lịch trình", link: "schedule-management", linkType: "section" },
           { label: "Giám sát", link: "observation", linkType: "section" },
         ]}
         onMenuClick={handleMenuClick}

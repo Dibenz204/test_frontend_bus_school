@@ -44,4 +44,10 @@ const loginUser = async (email, password) => {
     });
 };
 
-export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser, loginUser };
+const getUserByPhone = async (phone) => {
+    return axios.get(`${API_BASE_URL}/user/api/user-by-phone`, {
+        params: { phone: phone },
+    });
+};
+
+export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser, loginUser, getUserByPhone };

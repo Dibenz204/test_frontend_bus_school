@@ -1,0 +1,444 @@
+.bus-mgmt-container {
+    display: flex;
+    min-height: 80vh;
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.bus-mgmt-left-panel {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.bus-mgmt-right-panel {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bus-mgmt-section {
+    margin-bottom: 25px;
+}
+
+.bus-mgmt-section-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.bus-mgmt-type-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bus-mgmt-type-btn {
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bus-mgmt-type-btn:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.bus-mgmt-type-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.bus-mgmt-tab-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bus-mgmt-tab-btn {
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 14px;
+}
+
+.bus-mgmt-tab-btn:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.bus-mgmt-tab-btn.active {
+    background: #27ae60;
+    color: white;
+    border-color: #27ae60;
+}
+
+.bus-mgmt-stats-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.bus-mgmt-stats-title {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bus-mgmt-stats-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.bus-mgmt-stat-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+}
+
+.bus-mgmt-stat-value {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.bus-mgmt-stat-label {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table Styles */
+.bus-mgmt-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.bus-mgmt-table th,
+.bus-mgmt-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.bus-mgmt-table th {
+    background: #34495e;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.bus-mgmt-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* Form Styles */
+.bus-mgmt-form-container {
+    max-width: 500px;
+    padding: 20px;
+}
+
+.bus-mgmt-form-title {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.bus-mgmt-form-group {
+    margin-bottom: 20px;
+}
+
+.bus-mgmt-form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.bus-mgmt-form-input,
+.bus-mgmt-form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.bus-mgmt-form-input:focus,
+.bus-mgmt-form-select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.bus-mgmt-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ecf0f1;
+}
+
+.bus-mgmt-submit-btn {
+    padding: 12px 24px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.bus-mgmt-submit-btn:hover {
+    background: #219a52;
+}
+
+.bus-mgmt-cancel-btn {
+    padding: 12px 24px;
+    background: #95a5a6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.bus-mgmt-cancel-btn:hover {
+    background: #7f8c8d;
+}
+
+/* Button Styles trong table */
+.bus-mgmt-edit-btn {
+    padding: 6px 12px;
+    background: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.bus-mgmt-edit-btn:hover {
+    background: #e67e22;
+}
+
+.bus-mgmt-delete-btn {
+    padding: 6px 12px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.bus-mgmt-delete-btn:hover {
+    background: #c0392b;
+}
+
+.bus-mgmt-loading-text,
+.bus-mgmt-empty-text {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+.bus-mgmt-empty-text {
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px dashed #bdc3c7;
+}
+
+/* Thêm các style mới cho filter và table scroll */
+
+.bus-mgmt-filter-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.bus-mgmt-filter-section h4 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.bus-mgmt-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.bus-mgmt-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bus-mgmt-filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.bus-mgmt-filter-select,
+.bus-mgmt-filter-input {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.bus-mgmt-sort-btn {
+    padding: 8px 12px;
+    border: 1px solid #6c757d;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.bus-mgmt-sort-btn:hover {
+    background: #e9ecef;
+}
+
+.bus-mgmt-sort-btn.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.bus-mgmt-filter-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.bus-mgmt-apply-btn {
+    padding: 8px 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bus-mgmt-apply-btn:hover {
+    background: #218838;
+}
+
+.bus-mgmt-reset-btn {
+    padding: 8px 16px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bus-mgmt-reset-btn:hover {
+    background: #5a6268;
+}
+
+/* Table container với scroll */
+.bus-mgmt-table-container {
+    max-height: 500px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Scroll dọc */
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+}
+
+.bus-mgmt-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.bus-mgmt-table th {
+    position: sticky;
+    top: 0;
+    background: #34495e;
+    z-index: 10;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-đã-lên-lịch {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.status-vận-hành {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.status-hoàn-thành {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-hủy-bỏ {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
