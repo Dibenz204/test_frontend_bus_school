@@ -23,30 +23,6 @@ const Admin = () => {
     }
   };
 
-  // const renderSection = () => {
-  //   switch (activeSection) {
-  //     case "dashboard":
-  //       return <AdminDashboard />;
-  //     case "phuhuynh":
-  //       return <div className="text-2xl font-bold">Trang Quản lý Phụ huynh</div>;
-  //     case "taixe":
-  //       return <div className="text-2xl font-bold">Trang Quản lý Tài xế</div>;
-  //     case "hocsinh":
-  //       return <div className="text-2xl font-bold">Trang Quản lý Học sinh</div>;
-  //     case "tuyenduong":
-  //       return <h1 className="text-2xl font-bold">Trang Tuyến đường</h1>;
-  //     case "danhgia":
-  //       return <h1 className="text-2xl font-bold">Trang Đánh giá</h1>;
-  //     case "lichchay":
-  //       return <h1 className="text-2xl font-bold">Trang Lịch chạy</h1>;
-  //     case "thongbao":
-  //       return <h1 className="text-2xl font-bold">Trang Thông báo</h1>;
-  //     case "quantrivien":
-  //       return <h1 className="text-2xl font-bold">Trang Quản trị viên</h1>;
-  //     default:
-  //       return <AdminDashboard />;
-  //   }
-  // };
 
   const renderSection = () => {
     switch (activeSection) {

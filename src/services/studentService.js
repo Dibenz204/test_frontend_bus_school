@@ -20,7 +20,7 @@ const createNewStudent = async (studentData) => {
 
 const deleteStudent = async (studentId) => {
     return axios.delete(`${API_BASE_URL}/api/student/delete-student`, {
-        params: { id_user: studentId },
+        params: { id_student: studentId },
     });
 }
 

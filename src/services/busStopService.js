@@ -11,11 +11,9 @@ const getAllBusStops = async (visibleFilter) => {
     return axios.get(`${API_BASE_URL}/api/bus-stop/get-all-bus-stops`, { params });
 };
 
-// const deleteBusStop = async (id) => {
-//     return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop`, {
-//         params: { id }
-//     });
-// };
+const getBusStops = async () => {
+    return axios.get(`${API_BASE_URL}/api/bus-stop/get-all-bus-stops`);
+};
 
 const deleteBusStop = async (id) => {
     return axios.delete(`${API_BASE_URL}/api/bus-stop/delete-bus-stop`, {
@@ -23,4 +21,4 @@ const deleteBusStop = async (id) => {
     });
 };
 
-export { createBusStop, getAllBusStops, deleteBusStop };
+export { createBusStop, getAllBusStops, deleteBusStop, getBusStops };

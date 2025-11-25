@@ -38,7 +38,7 @@ const PhuHuynh = () => {
 
   const renderSection = () => {
     switch (activeSection) {
-      case "theodoivitr":
+      case "theodoivitri":
         return <TheoDoiViTri />;
       case "thongtinphuhuynh":
         return <ThongTinPhuHuynh />;
@@ -58,7 +58,7 @@ const PhuHuynh = () => {
 
           {
             label: t("Theo dõi vị trí"),
-            link: "theodoivitr",
+            link: "theodoivitri",
             linkType: "section",
           },
           {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUserCountByRole, getUserByRole, createNewUser } from "../../services/userService";
+import { getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser } from "../../services/userService";
 import "../../styles/UserManagement.css";
 
 const UserManagement = () => {
@@ -12,6 +12,8 @@ const UserManagement = () => {
         "Phụ huynh": 0,
     });
     const [loading, setLoading] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editingUser, setEditingUser] = useState(null);
 
     // Form state
     const [formData, setFormData] = useState({
@@ -20,6 +22,16 @@ const UserManagement = () => {
         phone: "",
         birthday: "",
         gender: "Nam",
+        address: "",
+    });
+
+    // Edit form state
+    const [editFormData, setEditFormData] = useState({
+        id_user: "",
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
         address: "",
     });
 
@@ -91,6 +103,15 @@ const UserManagement = () => {
         }));
     };
 
+    // Xử lý thay đổi edit form input
+    const handleEditInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
     // Xử lý submit form thêm user
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -124,6 +145,51 @@ const UserManagement = () => {
         }
     };
 
+    // Xử lý xóa user
+    const handleDeleteUser = async (userId) => {
+        if (window.confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+            try {
+                await deleteUser(userId);
+                alert("Xóa người dùng thành công!");
+                fetchUsersByRole();
+                fetchRoleCount();
+            } catch (error) {
+                console.error("Error deleting user:", error);
+                alert("Có lỗi xảy ra khi xóa người dùng!");
+            }
+        }
+    };
+
+    // Xử lý mở modal chỉnh sửa
+    const handleEditUser = (user) => {
+        setEditingUser(user);
+        setEditFormData({
+            id_user: user.id_user,
+            name: user.name,
+            email: user.email,
+            phone: user.phone,
+            password: "", // Mật khẩu để trống, người dùng có thể đổi nếu muốn
+            address: user.address,
+            gender: user.gender,
+            birthday: user.birthday,
+        });
+        setShowEditModal(true);
+    };
+
+    // Xử lý submit form chỉnh sửa
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await updateUser(editFormData);
+            alert("Cập nhật thông tin người dùng thành công!");
+            setShowEditModal(false);
+            fetchUsersByRole();
+        } catch (error) {
+            console.error("Error updating user:", error);
+            alert("Có lỗi xảy ra khi cập nhật thông tin người dùng!");
+        }
+    };
+
     // Render nội dung theo tab - CHỈ TRONG RIGHT PANEL
     const renderRightContent = () => {
         switch (activeTab) {
@@ -131,16 +197,12 @@ const UserManagement = () => {
                 return renderViewTab();
             case "add":
                 return renderAddTab();
-            case "update":
-                return renderUpdateTab();
-            case "delete":
-                return renderDeleteTab();
             default:
                 return null;
         }
     };
 
-    // Tab xem danh sách
+    // Tab xem danh sách với các nút hành động
     const renderViewTab = () => {
         return (
             <div>
@@ -149,30 +211,49 @@ const UserManagement = () => {
                 ) : !Array.isArray(userBuffer) || userBuffer.length === 0 ? (
                     <div className="empty-text">Không có dữ liệu người dùng cho role {selectedRole}</div>
                 ) : (
-                    <table className="user-table">
-                        <thead>
-                            <tr>
-                                <th style={{ width: '15%' }}>Mã user</th>
-                                <th style={{ width: '20%' }}>Tên</th>
-                                <th style={{ width: '25%' }}>Email</th>
-                                <th style={{ width: '15%' }}>SĐT</th>
-                                <th style={{ width: '15%' }}>Ngày sinh</th>
-                                <th style={{ width: '10%' }}>Vai trò</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {userBuffer.map((user, index) => (
-                                <tr key={index}>
-                                    <td>{user.id_user}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.phone}</td>
-                                    <td>{user.birthday}</td>
-                                    <td>{user.role}</td>
+                    <div className="table-container">
+                        <table className="user-table">
+                            <thead>
+                                <tr>
+                                    <th style={{ width: '15%' }}>Tên</th>
+                                    <th style={{ width: '25%' }}>Email</th>
+                                    <th style={{ width: '13%' }}>SĐT</th>
+                                    <th style={{ width: '12%' }}>Ngày sinh</th>
+                                    <th style={{ width: '20%' }}>Ngày lập tài khoản</th>
+                                    <th style={{ width: '15%' }}>Tùy chỉnh</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {userBuffer.map((user, index) => (
+                                    <tr key={index}>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.phone}</td>
+                                        <td>{user.birthday}</td>
+                                        <td>
+                                            {user.createdAt ? new Date(user.createdAt).toLocaleDateString('vi-VN') : 'N/A'}
+                                        </td>
+                                        <td>
+                                            <div className="action-buttons">
+                                                <button
+                                                    className="edit-btn"
+                                                    onClick={() => handleEditUser(user)}
+                                                >
+                                                    Sửa
+                                                </button>
+                                                <button
+                                                    className="delete-btn"
+                                                    onClick={() => handleDeleteUser(user.id_user)}
+                                                >
+                                                    Xóa
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
         );
@@ -277,22 +358,127 @@ const UserManagement = () => {
         );
     };
 
-    // Tab cập nhật (đang phát triển)
-    const renderUpdateTab = () => {
-        return (
-            <div className="empty-text">
-                <h3>Cập nhật người dùng</h3>
-                <p>Chức năng đang được phát triển...</p>
-            </div>
-        );
-    };
+    // Modal chỉnh sửa user
+    const renderEditModal = () => {
+        if (!showEditModal) return null;
 
-    // Tab xóa (đang phát triển)
-    const renderDeleteTab = () => {
         return (
-            <div className="empty-text">
-                <h3>Xóa người dùng</h3>
-                <p>Chức năng đang được phát triển...</p>
+            <div className="modal-overlay">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h3>Chỉnh sửa thông tin người dùng</h3>
+                        <button
+                            className="close-btn"
+                            onClick={() => setShowEditModal(false)}
+                        >
+                            ×
+                        </button>
+                    </div>
+
+                    <form onSubmit={handleEditSubmit}>
+                        <div className="form-group">
+                            <label className="form-label">Tên người dùng</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={editFormData.name}
+                                onChange={handleEditInputChange}
+                                required
+                                className="form-input"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={editFormData.email}
+                                onChange={handleEditInputChange}
+                                required
+                                className="form-input"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Số điện thoại</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                value={editFormData.phone}
+                                onChange={handleEditInputChange}
+                                required
+                                className="form-input"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Mật khẩu mới (để trống nếu không đổi)</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={editFormData.password}
+                                onChange={handleEditInputChange}
+                                placeholder="Nhập mật khẩu mới"
+                                className="form-input"
+                            />
+                        </div>
+
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label className="form-label">Giới tính</label>
+                                <select
+                                    name="gender"
+                                    value={editFormData.gender}
+                                    onChange={handleEditInputChange}
+                                    className="form-select"
+                                    required
+                                >
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="form-label">Ngày sinh</label>
+                                <input
+                                    type="date"
+                                    name="birthday"
+                                    value={editFormData.birthday}
+                                    onChange={handleEditInputChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Địa chỉ</label>
+                            <input
+                                type="text"
+                                name="address"
+                                value={editFormData.address}
+                                onChange={handleEditInputChange}
+                                required
+                                className="form-input"
+                            />
+                        </div>
+
+                        <div className="modal-actions">
+                            <button
+                                type="button"
+                                className="cancel-btn"
+                                onClick={() => setShowEditModal(false)}
+                            >
+                                Hủy
+                            </button>
+                            <button type="submit" className="save-btn">
+                                Lưu thay đổi
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     };
@@ -301,8 +487,6 @@ const UserManagement = () => {
         <div className="user-management-container">
             {/* LEFT PANEL - Cố định width */}
             <div className="left-panel">
-                {/* <h1 className="main-title">Danh sách người dùng</h1> */}
-
                 {/* Section 1: Chọn vai trò */}
                 <div className="section">
                     <span className="section-label">Chọn vai trò:</span>
@@ -344,45 +528,17 @@ const UserManagement = () => {
                         >
                             ➕ Thêm
                         </button>
-                        <button
-                            className={`tab-btn ${activeTab === "update" ? "active" : ""}`}
-                            onClick={() => setActiveTab("update")}
-                        >
-                            ✏️ Sửa
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === "delete" ? "active" : ""}`}
-                            onClick={() => setActiveTab("delete")}
-                        >
-                            🗑️ Xóa
-                        </button>
                     </div>
                 </div>
-
-                {/* Section 3: Thống kê */}
-                {/* <div className="stats-container">
-                    <h3 className="stats-title">Thống kê người dùng</h3>
-                    <div className="stats-grid">
-                        <div className="stat-item">
-                            <span className="stat-value">{roleCount["Quản trị viên"]}</span>
-                            <span className="stat-label">Quản trị viên</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-value">{roleCount["Tài xế"]}</span>
-                            <span className="stat-label">Tài xế</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-value">{roleCount["Phụ huynh"]}</span>
-                            <span className="stat-label">Phụ huynh</span>
-                        </div>
-                    </div>
-                </div> */}
             </div>
 
             {/* RIGHT PANEL - Cố định, render bảng hoặc form */}
             <div className="right-panel">
                 {renderRightContent()}
             </div>
+
+            {/* Modal chỉnh sửa */}
+            {renderEditModal()}
         </div>
     );
 };
