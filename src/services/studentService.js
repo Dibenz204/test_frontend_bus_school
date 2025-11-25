@@ -29,5 +29,11 @@ const updateStudent = async (studentData) => {
     return axios.put(`${API_BASE_URL}/api/student/update-student`, studentData);
 };
 
+const getStudentsByParent = async (parentId) => {
+    return axios.get(`${API_BASE_URL}/api/student/get-by-parent`, {
+        params: { id_user: parentId }
+    });
+};
 
-export { getAllStudent, createNewStudent, deleteStudent, updateStudent };
+
+export { getAllStudent, createNewStudent, deleteStudent, updateStudent, getStudentsByParent };

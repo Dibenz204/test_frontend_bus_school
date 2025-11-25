@@ -364,7 +364,7 @@ const Introduce = () => {
         id="home"
         className="relative min-h-screen flex flex-col items-center justify-center bg-cover bg-center text-center px-6 py-20"
         style={{
-          backgroundImage: "url('/23.png')",
+          backgroundImage: "url('/32.png')",
         }}
       >
         <div className="flex flex-col items-center -mt-6 leading-[0.9] text-white h-[500px]">
