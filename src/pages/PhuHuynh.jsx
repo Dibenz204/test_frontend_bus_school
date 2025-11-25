@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import TheoDoiViTri from "../components/PhuHuynh/TheoDoiViTri";
 import ThongTinPhuHuynh from "../components/PhuHuynh/ThongTinPhuHuynh";
 import LichSuThongBao from "../components/PhuHuynh/LichSuThongBao";
-import NotificationMenu from "../components/PhuHuynh/NotificationMenu";
+import NotificationPanel from "../components/PhuHuynh/NotificationPanel";
 import FloatingNotificationButton from "../components/PhuHuynh/FloatingNotificationButton";
 
 import { useAuth } from "../components/ui/AuthContext";
@@ -42,8 +42,8 @@ const PhuHuynh = () => {
         return <TheoDoiViTri />;
       case "thongtinphuhuynh":
         return <ThongTinPhuHuynh />;
-      case "lichsuthongbao":
-        return <LichSuThongBao />;
+      case "thongbao":
+        return <NotificationPanel />;
       default:
         return <TheoDoiViTri />;
     }
@@ -66,11 +66,11 @@ const PhuHuynh = () => {
             link: "thongtinphuhuynh",
             linkType: "section",
           },
-          // {
-          //   label: t("Lịch sử thông báo"),
-          //   link: "lichsuthongbao",
-          //   linkType: "section",
-          // },
+          {
+            label: t("Thông báo"),
+            link: "thongbao",
+            linkType: "section",
+          },
         ]}
 
         onMenuClick={handleMenuClick}
@@ -91,11 +91,11 @@ const PhuHuynh = () => {
         onClick={() => setShowOptions(!showOptions)}
       />
 
-      {showOptions && (
+      {/* {showOptions && (
         <div className="fixed bottom-20 right-6 animate-fade-in">
           <NotificationMenu onSelect={handleNotification} />
         </div>
-      )}
+      )} */}
 
       {showNotification && (
         <div
