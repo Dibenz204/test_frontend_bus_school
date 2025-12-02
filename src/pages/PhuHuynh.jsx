@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import TheoDoiViTri from "../components/PhuHuynh/TheoDoiViTri";
 import ThongTinPhuHuynh from "../components/PhuHuynh/ThongTinPhuHuynh";
-import LichSuThongBao from "../components/PhuHuynh/LichSuThongBao";
 import NotificationPanel from "../components/PhuHuynh/NotificationPanel";
 import FloatingNotificationButton from "../components/PhuHuynh/FloatingNotificationButton";
+import RequestEvaluate from "../components/PhuHuynh/RequestEvaluate";
 
 import { useAuth } from "../components/ui/AuthContext";
 
@@ -44,6 +44,8 @@ const PhuHuynh = () => {
         return <ThongTinPhuHuynh />;
       case "thongbao":
         return <NotificationPanel />;
+      case "yeucau":
+        return <RequestEvaluate />;
       default:
         return <TheoDoiViTri />;
     }
@@ -55,22 +57,26 @@ const PhuHuynh = () => {
         variant="parent"
         user={user}
         menuItems={[
-
           {
-            label: t("Theo dõi vị trí"),
+            label: t("header_parent.tracking"),
             link: "theodoivitri",
             linkType: "section",
           },
           {
-            label: t("Thông tin phụ huynh"),
+            label: t("header_parent.infor"),
             link: "thongtinphuhuynh",
             linkType: "section",
           },
           {
-            label: t("Thông báo"),
+            label: t("header_parent.notifications"),
             link: "thongbao",
             linkType: "section",
           },
+          {
+            label: t("header_parent.requests"),
+            link: "yeucau",
+            linkType: "section",
+          }
         ]}
 
         onMenuClick={handleMenuClick}

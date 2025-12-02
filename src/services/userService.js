@@ -50,4 +50,14 @@ const getUserByPhone = async (phone) => {
     });
 };
 
-export { getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser, loginUser, getUserByPhone };
+// Thêm vào services/userService.js (frontend)
+const getDriverLocationsForParent = async (id_parent) => {
+    return axios.get(`${API_BASE_URL}/user/api/get-driver-locations-for-parent`, {
+        params: { id_parent: id_parent }
+    });
+};
+
+export {
+    getAllUsers, getUserCountByRole, getUserByRole, createNewUser, deleteUser, updateUser,
+    loginUser, getUserByPhone, getDriverLocationsForParent
+};

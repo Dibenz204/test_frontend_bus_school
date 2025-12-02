@@ -65,11 +65,11 @@ const Header = ({
 
   // ✅ XỬ LÝ LOGOUT CHO CẢ 3 ROLE
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất không?");
+    const confirmLogout = window.confirm(t("header.confirm_logout"));
     if (confirmLogout) {
       // ✅ Tắt GPS nếu là tài xế
       if (userInfo && userInfo.role === "Tài xế") {
-        console.log("🔴 Đăng xuất - GPS sẽ tự động tắt");
+        console.log(t("header.gps_logout_message"));
       }
 
       // Xóa thông tin user
@@ -115,7 +115,7 @@ const Header = ({
     } else if (userInfo.role === "Phụ huynh") {
       return userInfo.name || userInfo.id_parent;
     }
-    return userInfo.name || "User";
+    return userInfo.name || t("header.user");
   };
 
   // ✅ LẤY ID HIỂN THỊ CHO USER
@@ -144,7 +144,7 @@ const Header = ({
       <nav className="w-full flex items-center justify-between px-4 md:px-6 py-3">
         <div
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer transform -translate-x-10"
         >
           <img src="logo.png" alt="Logo" className="w-10 h-10 object-contain" />
           <span
@@ -173,7 +173,7 @@ const Header = ({
               className={`transition-colors ${isParent ? "hover:text-black" : "hover:text-orange-500"
                 }`}
             >
-              {item.label}
+              {t(item.label)}
             </button>
           ))}
         </div>
@@ -223,14 +223,14 @@ const Header = ({
                     className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                   >
                     <Home size={16} />
-                    Về trang của bạn
+                    {t("header.back_to_your_page")}
                   </button>
                   <button
                     onClick={handleLogout}
                     className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                   >
                     <LogOut size={16} />
-                    Đăng xuất
+                    {t("header.logout")}
                   </button>
                 </div>
               )}
@@ -281,7 +281,7 @@ const Header = ({
                 className={`transition-colors ${isParent ? "hover:text-black" : "hover:text-orange-500"
                   }`}
               >
-                {item.label}
+                {t(item.label)}
               </button>
             ))}
 
@@ -294,7 +294,7 @@ const Header = ({
                 }`}
             >
               <Globe size={18} />
-              <span>Ngôn ngữ ({i18n.language.toUpperCase()})</span>
+              <span>{t("header.language")} ({i18n.language.toUpperCase()})</span>
             </button>
 
             {/* ✅ USER DROPDOWN TRONG MENU MOBILE */}
@@ -303,7 +303,7 @@ const Header = ({
                 {/* Thông tin user */}
                 <div className="text-center mb-2">
                   <p className={`font-semibold ${isParent ? "text-white" : "text-gray-800"}`}>
-                    👋 Xin chào, {getUserDisplayName()}
+                    👋 {t("header.hello")}, {getUserDisplayName()}
                   </p>
                   <p className={`text-sm ${isParent ? "text-white opacity-80" : "text-gray-600"}`}>
                     {userInfo.role} • {getUserDisplayId()}
@@ -316,7 +316,7 @@ const Header = ({
                   className="flex items-center gap-2 w-full justify-center px-4 py-2 rounded-full border border-white text-white font-medium hover:bg-white hover:text-black transition-colors"
                 >
                   <Home size={16} />
-                  Về trang của bạn
+                  {t("header.back_to_your_page")}
                 </button>
 
                 {/* Nút đăng xuất */}
@@ -325,7 +325,7 @@ const Header = ({
                   className="flex items-center gap-2 w-full justify-center px-4 py-2 rounded-full border border-white text-white font-medium hover:bg-white hover:text-black transition-colors"
                 >
                   <LogOut size={16} />
-                  Đăng xuất
+                  {t("header.logout")}
                 </button>
               </div>
             ) : (
@@ -365,18 +365,15 @@ const Header = ({
 
 export default Header;
 
-
 // import React, { useState, useEffect } from "react";
 // import { useTranslation } from "react-i18next";
 // import { Menu, X, Globe, User, LogOut, Home } from "lucide-react";
 // import { useNavigate } from "react-router-dom";
-// import LanguageSwitcher from "./LanguageSwitcher";
 
 // const Header = ({
 //   menuItems = [],
 //   loginButton = true,
 //   showLogin = true,
-//   showLanguage = true,
 //   onMenuClick,
 //   variant = "normal",
 // }) => {
@@ -384,7 +381,6 @@ export default Header;
 //   const [scrolled, setScrolled] = useState(false);
 //   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 //   const { t, i18n } = useTranslation();
-//   const currentLanguage = i18n.language.toUpperCase();
 //   const navigate = useNavigate();
 
 //   const isParent = variant === "parent";
@@ -550,24 +546,23 @@ export default Header;
 //         </div>
 
 //         <div className="hidden md:flex items-center gap-3">
-//           {showLanguage && (
-//             <LanguageSwitcher isParent={isParent} scrolled={scrolled} />
+//           {/* ✅ NÚT NGÔN NGỮ - LUÔN LUÔN HIỆN */}
+//           <button
+//             onClick={toggleLanguage}
+//             className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${isParent
+//               ? "border-white text-white hover:bg-white hover:text-black"
+//               : scrolled
+//                 ? "border-gray-300 text-gray-700 hover:bg-gray-100"
+//                 : "border-gray-400 text-gray-700 hover:bg-gray-100"
+//               }`}
+//           >
+//             <Globe size={18} />
+//             <span className="text-sm font-medium">
+//               {i18n.language.toUpperCase()}
+//             </span>
+//           </button>
 
-//             // <button
-//             //   onClick={toggleLanguage}
-//             //   className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${isParent
-//             //       ? "border-white text-white hover:bg-white hover:text-black"
-//             //       : scrolled
-//             //         ? "border-gray-300 text-gray-700 hover:bg-gray-100"
-//             //         : "border-gray-400 text-gray-700 hover:bg-gray-100"
-//             //     }`}
-//             // >
-//             //   <Globe size={18} />
-//             //   <span className="text-sm font-medium">{currentLanguage}</span>
-//             // </button>
-//           )}
-
-//           {/* ✅ HIỂN THỊ DROPDOWN USER CHO CẢ 3 ROLE KHI ĐÃ LOGIN */}
+//           {/* ✅ DESKTOP: DROPDOWN USER CHO CẢ 3 ROLE KHI ĐÃ LOGIN */}
 //           {isLoggedIn ? (
 //             <div className="relative">
 //               <button
@@ -631,6 +626,7 @@ export default Header;
 //           )}
 //         </div>
 
+//         {/* ✅ MOBILE: CHỈ CÓ NÚT MENU, MỌI THỨ VÀO DROPDOWN */}
 //         <button
 //           className={`md:hidden transition-colors ${isParent ? "text-white" : scrolled ? "text-gray-800" : "text-black"
 //             }`}
@@ -644,6 +640,7 @@ export default Header;
 //             className={`absolute top-16 right-6 ${isParent ? "bg-orange-500 text-white" : "bg-white text-gray-800"
 //               } shadow-lg rounded-xl flex flex-col items-center gap-4 py-4 px-8 text-lg font-medium md:hidden animate-fadeIn z-50`}
 //           >
+//             {/* MENU ITEMS */}
 //             {menuItems.map((item) => (
 //               <button
 //                 key={item.label}
@@ -655,22 +652,22 @@ export default Header;
 //               </button>
 //             ))}
 
-//             {showLanguage && (
-//               <button
-//                 onClick={toggleLanguage}
-//                 className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${isParent
-//                   ? "border-white text-white hover:bg-white hover:text-black"
-//                   : "border-gray-300 text-gray-700 hover:bg-gray-100"
-//                   }`}
-//               >
-//                 <Globe size={18} />
-//                 <span className="text-sm font-medium">{currentLanguage}</span>
-//               </button>
-//             )}
+//             {/* NÚT NGÔN NGỮ TRONG DROPDOWN */}
+//             <button
+//               onClick={toggleLanguage}
+//               className={`flex items-center gap-2 px-4 py-2 rounded-full border transition ${isParent
+//                 ? "border-white text-white hover:bg-white hover:text-black"
+//                 : "border-gray-300 text-gray-700 hover:bg-gray-100"
+//                 }`}
+//             >
+//               <Globe size={18} />
+//               <span>Ngôn ngữ ({i18n.language.toUpperCase()})</span>
+//             </button>
 
-//             {/* ✅ MOBILE: HIỂN THỊ DROPDOWN USER CHO CẢ 3 ROLE */}
+//             {/* ✅ USER DROPDOWN TRONG MENU MOBILE */}
 //             {isLoggedIn ? (
 //               <div className="flex flex-col gap-3 mt-2 w-full items-center border-t pt-4 border-gray-300">
+//                 {/* Thông tin user */}
 //                 <div className="text-center mb-2">
 //                   <p className={`font-semibold ${isParent ? "text-white" : "text-gray-800"}`}>
 //                     👋 Xin chào, {getUserDisplayName()}
@@ -679,6 +676,8 @@ export default Header;
 //                     {userInfo.role} • {getUserDisplayId()}
 //                   </p>
 //                 </div>
+
+//                 {/* Nút về trang của bạn */}
 //                 <button
 //                   onClick={handleBackToDashboard}
 //                   className="flex items-center gap-2 w-full justify-center px-4 py-2 rounded-full border border-white text-white font-medium hover:bg-white hover:text-black transition-colors"
@@ -686,6 +685,8 @@ export default Header;
 //                   <Home size={16} />
 //                   Về trang của bạn
 //                 </button>
+
+//                 {/* Nút đăng xuất */}
 //                 <button
 //                   onClick={handleLogout}
 //                   className="flex items-center gap-2 w-full justify-center px-4 py-2 rounded-full border border-white text-white font-medium hover:bg-white hover:text-black transition-colors"
@@ -694,34 +695,34 @@ export default Header;
 //                   Đăng xuất
 //                 </button>
 //               </div>
-//             ) : showLogin ? (
-//               <div className="flex flex-col gap-3 mt-2 w-full items-center border-t pt-4 border-gray-300">
-//                 {loginButton ? (
-//                   <button
-//                     onClick={() => {
-//                       navigate("/login");
-//                       setOpen(false);
-//                     }}
-//                     className={`px-4 py-2 rounded-full border font-medium transition ${isParent
-//                       ? "border-white text-white hover:bg-white hover:text-black"
-//                       : "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
-//                       }`}
-//                   >
-//                     {t("header.login")}
-//                   </button>
-//                 ) : (
-//                   <button
-//                     onClick={() => {
-//                       navigate("/logout");
-//                       setOpen(false);
-//                     }}
-//                     className="px-4 py-2 rounded-full border border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white transition-colors"
-//                   >
-//                     {t("header.logout")}
-//                   </button>
-//                 )}
-//               </div>
-//             ) : null}
+//             ) : (
+//               /* NÚT LOGIN TRONG DROPDOWN MOBILE */
+//               showLogin &&
+//               (loginButton ? (
+//                 <button
+//                   onClick={() => {
+//                     navigate("/login");
+//                     setOpen(false);
+//                   }}
+//                   className={`px-4 py-2 rounded-full border font-medium transition ${isParent
+//                     ? "border-white text-white hover:bg-white hover:text-black"
+//                     : "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+//                     }`}
+//                 >
+//                   {t("header.login")}
+//                 </button>
+//               ) : (
+//                 <button
+//                   onClick={() => {
+//                     navigate("/logout");
+//                     setOpen(false);
+//                   }}
+//                   className="px-4 py-2 rounded-full border border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white transition-colors"
+//                 >
+//                   {t("header.logout")}
+//                 </button>
+//               ))
+//             )}
 //           </div>
 //         )}
 //       </nav>
@@ -730,5 +731,4 @@ export default Header;
 // };
 
 // export default Header;
-
 

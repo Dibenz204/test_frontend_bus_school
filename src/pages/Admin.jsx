@@ -7,6 +7,7 @@ import RouteManagement from "@/components/Admin/RouteManagement";
 import StudentManagement from "@/components/Admin/StudentManagement";
 import ScheduleManagement from "@/components/Admin/ScheduleManagement";
 import Observation from "@/components/Admin/Observation";
+import RequestEvaluateManagement from "@/components/Admin/RequestEvaluationManagement";
 
 const Admin = () => {
   const { t } = useTranslation();
@@ -38,6 +39,8 @@ const Admin = () => {
         return <ScheduleManagement />;
       case "observation":
         return <Observation />;
+      case "request-evaluate-management":
+        return <RequestEvaluateManagement />;
       default:
         return <UserManagement />;
     }
@@ -49,12 +52,13 @@ const Admin = () => {
       <Header
         variant="admin"
         menuItems={[
-          { label: "Thống kê", link: "dashboard", linkType: "section" },
-          { label: "Người dùng", link: "user-management", linkType: "section" },
-          { label: "Tuyến đường", link: "route-management", linkType: "section" },
-          { label: "Học sinh", link: "student-management", linkType: "section" },
-          { label: "Bus & Lịch trình", link: "schedule-management", linkType: "section" },
-          { label: "Giám sát", link: "observation", linkType: "section" },
+          { label: t("header_admin.dashboard"), link: "dashboard", linkType: "section" },
+          { label: t("header_admin.user"), link: "user-management", linkType: "section" },
+          { label: t("header_admin.route"), link: "route-management", linkType: "section" },
+          { label: t("header_admin.student"), link: "student-management", linkType: "section" },
+          { label: t("header_admin.schedule_bus"), link: "schedule-management", linkType: "section" },
+          { label: t("header_admin.observation"), link: "observation", linkType: "section" },
+          { label: t("header_admin.request&evaluation"), link: "request-evaluate-management", linkType: "section" },
         ]}
         onMenuClick={handleMenuClick}
         showLogin={false}
