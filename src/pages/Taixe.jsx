@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import LichLamViec from "@/components/Driver_UI/LichLamViec";
 import DanhSachHocSinh from "@/components/Driver_UI/DanhSachHocSinh";
 import BaoCaoSuCoXe from "@/components/Driver_UI/BaoCaoSuCoXe";
+import DriverNotificationPanel from "@/components/Driver_UI/DriverNotificationPanel";
 import Map_Driver from "@/components/Driver_UI/Map_Driver";
 import { io } from 'socket.io-client';
 
@@ -179,6 +180,7 @@ const Taixe = () => {
         menuItems={[
           { label: t("driverPage.menu.workSchedule"), link: "lichlamviec", linkType: "section" },
           { label: t("driverPage.menu.studentList"), link: "danhsachhocsinh", linkType: "section" },
+          { label: t("driverPage.menu.notification"), link: "thongbao", linkType: "section" },
           { label: t("driverPage.menu.route"), link: "tuyenduong", linkType: "section" },
         ]}
         onMenuClick={handleMenuClick}
@@ -206,6 +208,7 @@ const Taixe = () => {
         <div key={activeSection}>
           {activeSection === "lichlamviec" && <LichLamViec />}
           {activeSection === "danhsachhocsinh" && <DanhSachHocSinh />}
+          {activeSection === "thongbao" && <DriverNotificationPanel />}
 
           {activeSection === "tuyenduong" && (
             <div className="relative z-0">
@@ -216,9 +219,9 @@ const Taixe = () => {
       </main>
 
       {/* ALWAYS AT THE BOTTOM */}
-      <div className="mt-auto z-50 relative">
+      {/* <div className="mt-auto z-50 relative">
         <BaoCaoSuCoXe />
-      </div>
+      </div> */}
     </div>
   );
 };

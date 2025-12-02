@@ -535,6 +535,7 @@
             "workSchedule": "Work Schedule",
             "studentList": "Student List",
             "pickupReport": "Pickup Report",
+            "notification": "Notifications",
             "route": "Route"
         },
         "report": {
@@ -658,6 +659,39 @@
             "suggestions": {
                 "title": "Suggestions",
                 "items": "• 📋 Check your schedule again in the Schedule Management section<br/>• 👨‍💼 Contact manager if you need new schedule assignments<br/>• 🔐 Make sure you're logged in with the correct driver account<br/>• ⏰ Schedules are usually updated before 7:00 AM"
+            }
+        }
+    },
+    "driver_notifications": {
+        "title": "Driver Notifications",
+        "new": "new",
+        "mark_all_read": "Mark all as read",
+        "refresh": "Refresh",
+        "loading": "Loading notifications...",
+        "empty": "No notifications yet",
+        "empty_subtitle": "When you have new notifications, they will appear here",
+        "mark_as_read": "Mark as read",
+        "showing_count": "Showing {{count}} notifications",
+        "login_required": "Please login to view notifications",
+        "driver_only": "This feature is for drivers only",
+        "no_notifications": "No notifications found",
+        "load_error": "Unable to load notifications. Please try again later.",
+        "retry": "Try Again",
+        "types": {
+            "bus_stop": "Bus Stop",
+            "schedule": "Schedule",
+            "incident": "Incident",
+            "other": "Other"
+        },
+        "mock": {
+            "senders": {
+                "admin": "Administrator",
+                "parent": "Parent"
+            },
+            "messages": {
+                "schedule_change": "Schedule change: Bus route #01 will change time from tomorrow",
+                "new_schedule": "You have a new schedule: 8:00 - Route #02",
+                "important_notice": "Important notice from parent about pickup point"
             }
         }
     },

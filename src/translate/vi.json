@@ -535,6 +535,7 @@
             "workSchedule": "Lịch làm việc",
             "studentList": "Danh sách học sinh",
             "pickupReport": "Báo cáo đón trả",
+            "notifications": "Thông báo",
             "route": "Tuyến đường"
         },
         "report": {
@@ -658,6 +659,39 @@
             "suggestions": {
                 "title": "Gợi ý",
                 "items": "• 📋 Kiểm tra lại lịch trình trong phần Quản lý Lịch trình<br/>• 👨‍💼 Liên hệ quản lý nếu cần được phân công lịch mới<br/>• 🔐 Đảm bảo bạn đã đăng nhập đúng tài khoản tài xế<br/>• ⏰ Lịch trình thường được cập nhật trước 7:00 sáng"
+            }
+        }
+    },
+    "driver_notifications": {
+        "title": "Thông báo tài xế",
+        "new": "mới",
+        "mark_all_read": "Đánh dấu tất cả đã đọc",
+        "refresh": "Làm mới",
+        "loading": "Đang tải thông báo...",
+        "empty": "Chưa có thông báo nào",
+        "empty_subtitle": "Khi có thông báo mới, chúng sẽ xuất hiện ở đây",
+        "mark_as_read": "Đánh dấu đã đọc",
+        "showing_count": "Hiển thị {{count}} thông báo",
+        "login_required": "Vui lòng đăng nhập để xem thông báo",
+        "driver_only": "Chức năng chỉ dành cho tài xế",
+        "no_notifications": "Không có thông báo nào",
+        "load_error": "Không thể tải thông báo. Vui lòng thử lại sau.",
+        "retry": "Thử lại",
+        "types": {
+            "bus_stop": "Trạm",
+            "schedule": "Lịch trình",
+            "incident": "Sự cố",
+            "other": "Khác"
+        },
+        "mock": {
+            "senders": {
+                "admin": "Quản trị viên",
+                "parent": "Phụ huynh"
+            },
+            "messages": {
+                "schedule_change": "Thay đổi lịch trình: Xe bus tuyến số 01 sẽ thay đổi thời gian từ ngày mai",
+                "new_schedule": "Bạn có lịch trình mới: 8:00 - Tuyến số 02",
+                "important_notice": "Thông báo quan trọng từ phụ huynh về điểm đón"
             }
         }
     },
