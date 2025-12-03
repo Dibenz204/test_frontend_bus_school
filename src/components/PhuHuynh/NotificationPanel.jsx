@@ -15,7 +15,7 @@ const NotificationPanel = () => {
       console.log("🔍 User info từ localStorage:", userInfo);
       return userInfo;
     } catch (error) {
-      console.error("Lỗi khi lấy thông tin user:", error);
+      console.error(t('notification.error.userInfo'), error);
       return null;
     }
   };
@@ -33,13 +33,13 @@ const NotificationPanel = () => {
       const userInfo = getUserInfo();
 
       if (!userInfo) {
-        setError("Vui lòng đăng nhập để xem thông báo");
+        setError(t('notification.error.loginRequired'));
         setIsLoading(false);
         return;
       }
 
       if (userInfo.role !== "Phụ huynh") {
-        setError("Chức năng chỉ dành cho phụ huynh");
+        setError(t('notification.error.parentsOnly'));
         setIsLoading(false);
         return;
       }
@@ -78,45 +78,15 @@ const NotificationPanel = () => {
         const unread = sortedNotifications.filter(noti => !noti.read).length;
         setUnreadCount(unread);
       } else {
-        setError(data.message || "Không có thông báo nào");
+        setError(data.message || t('notification.noNotifications'));
+        setNotifications([]);
+        setUnreadCount(0);
       }
     } catch (error) {
       console.error("❌ Lỗi khi lấy thông báo:", error);
-      setError("Không thể tải thông báo. Vui lòng thử lại sau.");
-
-      // Dữ liệu mẫu để test khi API chưa sẵn sàng
-      const mockNotifications = [
-        {
-          id: 1,
-          id_notification: 1,
-          message: "Thông báo từ Admin: Lịch trình xe buýt sẽ thay đổi từ ngày mai",
-          read: false,
-          createdAt: new Date().toISOString(),
-          type: "Thông báo",
-          sender_name: "Admin hệ thống"
-        },
-        {
-          id: 2,
-          id_notification: 2,
-          message: "Xe buýt tuyến số 01 sẽ đến trễ 15 phút do tắc đường",
-          read: true,
-          createdAt: new Date(Date.now() - 3600000).toISOString(),
-          type: "Sự cố",
-          sender_name: "Tài xế Nguyễn Văn A"
-        },
-        {
-          id: 3,
-          id_notification: 3,
-          message: "Nhắc nhở: Đón con tại điểm A lúc 16:30",
-          read: false,
-          createdAt: new Date(Date.now() - 7200000).toISOString(),
-          type: "Lịch trình",
-          sender_name: "Admin hệ thống"
-        }
-      ];
-
-      setNotifications(mockNotifications);
-      setUnreadCount(2);
+      setError(t('notification.error.fetchFailed'));
+      setNotifications([]);
+      setUnreadCount(0);
     } finally {
       setIsLoading(false);
     }
@@ -125,17 +95,23 @@ const NotificationPanel = () => {
   // Đánh dấu đã đọc
   const markAsRead = async (notificationId) => {
     try {
-      // Gọi API đánh dấu đã đọc nếu có
-      const API_URL = window.location.hostname === 'localhost'
-        ? 'http://localhost:5001'
-        : 'https://be-bus-school.onrender.com';
+      const userInfo = getUserInfo();
 
-      // Nếu có API mark-read thì gọi
-      // await fetch(`${API_URL}/api/notification/mark-read`, {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ id_notification: notificationId })
-      // });
+      if (userInfo) {
+        // Gọi API đánh dấu đã đọc
+        const API_URL = window.location.hostname === 'localhost'
+          ? 'http://localhost:5001'
+          : 'https://be-bus-school.onrender.com';
+
+        await fetch(`${API_URL}/api/notification/mark-read`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id_notification: notificationId,
+            id_user: userInfo.id_user
+          })
+        });
+      }
 
       // Cập nhật UI
       setNotifications(prev =>
@@ -147,14 +123,34 @@ const NotificationPanel = () => {
       );
       setUnreadCount(prev => Math.max(0, prev - 1));
     } catch (error) {
-      console.error("Lỗi khi đánh dấu đã đọc:", error);
+      console.error(t('notification.error.markRead'), error);
     }
   };
 
   // Đánh dấu tất cả đã đọc
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(noti => ({ ...noti, read: true })));
-    setUnreadCount(0);
+  const markAllAsRead = async () => {
+    try {
+      const userInfo = getUserInfo();
+
+      if (userInfo) {
+        // Gọi API đánh dấu tất cả đã đọc
+        const API_URL = window.location.hostname === 'localhost'
+          ? 'http://localhost:5001'
+          : 'https://be-bus-school.onrender.com';
+
+        await fetch(`${API_URL}/api/notification/mark-all-read`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id_user: userInfo.id_user })
+        });
+      }
+
+      // Cập nhật UI
+      setNotifications(prev => prev.map(noti => ({ ...noti, read: true })));
+      setUnreadCount(0);
+    } catch (error) {
+      console.error(t('notification.error.markAllRead'), error);
+    }
   };
 
   // Định dạng thời gian
@@ -221,9 +217,9 @@ const NotificationPanel = () => {
           <p className="text-gray-700">{error}</p>
           <button
             onClick={fetchNotifications}
-            className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
+            className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
-            Thử lại
+            {t('notification.retry')}
           </button>
         </div>
       </div>
@@ -235,37 +231,37 @@ const NotificationPanel = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-3">
-          <h2 className="text-xl font-bold text-gray-800">Thông báo</h2>
+          <h2 className="text-xl font-bold text-gray-800">{t('notification.title')}</h2>
           {unreadCount > 0 && (
             <span className="bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
-              {unreadCount} mới
+              {t('notification.newCount', { count: unreadCount })}
             </span>
           )}
         </div>
-        <div className="flex items-center space-x-3">
+        {/* <div className="flex items-center space-x-3">
           {unreadCount > 0 && (
             <button
               onClick={markAllAsRead}
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
             >
-              Đánh dấu tất cả đã đọc
+              {t('notification.markAllRead')}
             </button>
           )}
           <button
             onClick={fetchNotifications}
-            className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full"
-            title="Làm mới"
+            className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors"
+            title={t('notification.refresh')}
           >
             🔄
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Loading */}
       {isLoading && (
         <div className="text-center py-8">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-          <p className="text-gray-600 mt-2">Đang tải thông báo...</p>
+          <p className="text-gray-600 mt-2">{t('notification.loading')}</p>
         </div>
       )}
 
@@ -275,9 +271,9 @@ const NotificationPanel = () => {
           {notifications.length === 0 ? (
             <div className="text-center text-gray-500 py-8">
               <div className="text-4xl mb-2">📭</div>
-              <p className="text-gray-700">Chưa có thông báo nào</p>
+              <p className="text-gray-700">{t('notification.empty.title')}</p>
               <p className="text-sm text-gray-400 mt-2">
-                Khi có thông báo mới, chúng sẽ xuất hiện ở đây
+                {t('notification.empty.description')}
               </p>
             </div>
           ) : (
@@ -321,8 +317,8 @@ const NotificationPanel = () => {
                         e.stopPropagation();
                         markAsRead(notification.id || notification.id_notification);
                       }}
-                      className="ml-2 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-200"
-                      title="Đánh dấu đã đọc"
+                      className="ml-2 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-200 transition-colors"
+                      title={t('notification.markRead')}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -340,7 +336,7 @@ const NotificationPanel = () => {
       {notifications.length > 0 && (
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-sm text-gray-600 text-center">
-            Hiển thị {notifications.length} thông báo
+            {t('notification.showingCount', { count: notifications.length })}
           </p>
         </div>
       )}

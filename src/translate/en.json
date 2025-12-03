@@ -25,7 +25,7 @@
         "student": "Student",
         "schedule_bus": "Bus & Schedule",
         "observation": "Observation",
-        "request&evaluation": "Request & Evaluation"
+        "request&evaluation": "Informations"
     },
     "header_parent": {
         "tracking": "Tracking Location",
@@ -449,6 +449,29 @@
         "pickup_point": "Pickup point",
         "not_available": "Not available"
     },
+    "notification": {
+        "title": "Notifications",
+        "newCount": "{{count}} new",
+        "markAllRead": "Mark all as read",
+        "refresh": "Refresh",
+        "loading": "Loading notifications...",
+        "empty": {
+            "title": "No notifications yet",
+            "description": "When you have new notifications, they will appear here"
+        },
+        "markRead": "Mark as read",
+        "showingCount": "Showing {{count}} notifications",
+        "retry": "Retry",
+        "noNotifications": "No notifications",
+        "error": {
+            "userInfo": "Error getting user information",
+            "loginRequired": "Please login to view notifications",
+            "parentsOnly": "This feature is for parents only",
+            "fetchFailed": "Unable to load notifications. Please try again later.",
+            "markRead": "Error marking as read",
+            "markAllRead": "Error marking all as read"
+        }
+    },
     "request_evaluate": {
         "load_data_error": "Error loading data:",
         "load_schedules_error": "Error loading schedules:",
@@ -501,6 +524,172 @@
         "request_count": "Request Count",
         "evaluate_count": "Evaluate Count",
         "children_count": "Children Count"
+    },
+    "admin_management": {
+        "title": "Admin Management System",
+        "management": "Management",
+        "statistics": "Statistics",
+        "notes": "Notes",
+        "delete_confirm": "Are you sure you want to delete?",
+        "check_before_delete": "• Check carefully before deleting",
+        "clear_concise": "• Notifications should be clear and concise",
+        "correct_category": "• Categorize notifications correctly",
+        "tabs": {
+            "requests": "Requests",
+            "evaluations": "Evaluations",
+            "notifications": "Notifications"
+        },
+        "requests": {
+            "title": "Requests List ({{count}})",
+            "filter": {
+                "request_type": "Request Type",
+                "from_date": "From Date",
+                "to_date": "To Date",
+                "all": "All",
+                "bus": "Bus",
+                "bus_stop": "Bus Stop",
+                "route": "Route",
+                "other": "Other",
+                "reset": "Reset"
+            },
+            "table": {
+                "parent": "Parent",
+                "request_type": "Type",
+                "content": "Content",
+                "send_date": "Sent Date",
+                "actions": "Actions"
+            },
+            "actions": {
+                "refresh": "Refresh",
+                "delete": "Delete"
+            },
+            "states": {
+                "loading": "Loading...",
+                "empty": "No requests found"
+            }
+        },
+        "evaluations": {
+            "title": "Evaluations List ({{count}})",
+            "filter": {
+                "stars": "Stars",
+                "from_date": "From Date",
+                "to_date": "To Date",
+                "all": "All",
+                "5_stars": "5 stars",
+                "4_stars": "4 stars",
+                "3_stars": "3 stars",
+                "2_stars": "2 stars",
+                "1_star": "1 star",
+                "reset": "Reset"
+            },
+            "table": {
+                "parent": "Parent",
+                "schedule": "Schedule",
+                "rating": "Rating",
+                "comment": "Comment",
+                "send_date": "Sent Date",
+                "actions": "Actions"
+            },
+            "schedule_info": {
+                "date": "Date",
+                "time": "Time",
+                "route": "Route"
+            },
+            "actions": {
+                "refresh": "Refresh",
+                "delete": "Delete"
+            },
+            "states": {
+                "loading": "Loading...",
+                "empty": "No evaluations found",
+                "no_comment": "No comment"
+            }
+        },
+        "notifications": {
+            "title": "Notifications Management",
+            "send": "Send Notification",
+            "view": "View Notifications",
+            "send_form": {
+                "recipient": "Recipient",
+                "all_people": "All People",
+                "by_role": "By Role",
+                "specific_person": "Specific Person",
+                "select_role": "Select Role",
+                "parent_role": "Parent",
+                "driver_role": "Driver",
+                "admin_role": "Administrator",
+                "notification_type": "Notification Type",
+                "bus_stop_type": "Bus Stop",
+                "schedule_type": "Schedule",
+                "incident_type": "Incident",
+                "other_type": "Other",
+                "recipient_name": "Recipient Name",
+                "recipient_phone": "Recipient Phone",
+                "search_results": "Search Results",
+                "selected": "Selected",
+                "remove": "Remove",
+                "message_content": "Message Content",
+                "characters": "characters",
+                "reset": "Reset",
+                "send_notification": "Send Notification",
+                "sending": "Sending...",
+                "search_placeholder_name": "Enter name...",
+                "search_placeholder_phone": "Enter phone...",
+                "message_placeholder": "Enter notification content..."
+            },
+            "view_filter": {
+                "recipient_type": "Recipient Type",
+                "notification_type": "Notification Type",
+                "from_date": "From Date",
+                "to_date": "To Date",
+                "all_recipients": "All",
+                "parent_recipient": "Parent",
+                "admin_recipient": "Administrator",
+                "driver_recipient": "Driver",
+                "other_type_filter": "Other",
+                "reset": "Reset"
+            },
+            "view_table": {
+                "title": "Notifications List ({{count}})",
+                "recipient": "Recipient",
+                "role": "Role",
+                "send_type": "Send Type",
+                "send_date": "Sent Date",
+                "details": "Details",
+                "actions": "Actions"
+            },
+            "actions": {
+                "refresh": "Refresh",
+                "view": "View",
+                "delete": "Delete"
+            },
+            "detail_popup": {
+                "title": "Notification Details",
+                "id": "ID",
+                "recipient": "Recipient",
+                "send_type": "Send Type",
+                "notification_type": "Notification Type",
+                "time": "Time",
+                "message_content": "Message Content",
+                "close": "Close"
+            },
+            "states": {
+                "loading": "Loading...",
+                "empty": "No notifications found",
+                "all_people": "All People"
+            }
+        },
+        "alerts": {
+            "send_success": "Notification sent successfully! Sent {{count}} notifications.",
+            "send_error": "Error sending notification!",
+            "delete_success": "Deleted successfully!",
+            "delete_error": "Error deleting!",
+            "missing_message": "Please enter notification content!",
+            "missing_recipient": "Please select recipient!",
+            "missing_role": "Please select role!",
+            "confirm_send": "Are you sure you want to send this notification?",
+            "confirm_delete": "Are you sure you want to delete this?"
+        }
     },
     "parent_map": {
         "map_init_error": "❌ Map initialization error:",
@@ -682,17 +871,6 @@
             "schedule": "Schedule",
             "incident": "Incident",
             "other": "Other"
-        },
-        "mock": {
-            "senders": {
-                "admin": "Administrator",
-                "parent": "Parent"
-            },
-            "messages": {
-                "schedule_change": "Schedule change: Bus route #01 will change time from tomorrow",
-                "new_schedule": "You have a new schedule: 8:00 - Route #02",
-                "important_notice": "Important notice from parent about pickup point"
-            }
         }
     },
     "studentList": {

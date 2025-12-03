@@ -31,7 +31,7 @@
         "student": "Học sinh",
         "schedule_bus": "Bus & Lịch trình",
         "observation": "Giám sát",
-        "request&evaluation": "Yêu cầu & Đánh giá"
+        "request&evaluation": "Thông tin"
     },
     "footer": {
         "description": "Quản lý, theo dõi và tận hưởng mỗi chuyến xe — tất cả trong một ứng dụng.",
@@ -449,6 +449,29 @@
         "pickup_point": "Điểm đón",
         "not_available": "Chưa có"
     },
+    "notification": {
+        "title": "Thông báo",
+        "newCount": "{{count}} mới",
+        "markAllRead": "Đánh dấu tất cả đã đọc",
+        "refresh": "Làm mới",
+        "loading": "Đang tải thông báo...",
+        "empty": {
+            "title": "Chưa có thông báo nào",
+            "description": "Khi có thông báo mới, chúng sẽ xuất hiện ở đây"
+        },
+        "markRead": "Đánh dấu đã đọc",
+        "showingCount": "Hiển thị {{count}} thông báo",
+        "retry": "Thử lại",
+        "noNotifications": "Không có thông báo nào",
+        "error": {
+            "userInfo": "Lỗi khi lấy thông tin user",
+            "loginRequired": "Vui lòng đăng nhập để xem thông báo",
+            "parentsOnly": "Chức năng chỉ dành cho phụ huynh",
+            "fetchFailed": "Không thể tải thông báo. Vui lòng thử lại sau.",
+            "markRead": "Lỗi khi đánh dấu đã đọc",
+            "markAllRead": "Lỗi khi đánh dấu tất cả đã đọc"
+        }
+    },
     "request_evaluate": {
         "load_data_error": "Lỗi load data:",
         "load_schedules_error": "Lỗi load schedules:",
@@ -502,6 +525,172 @@
         "evaluate_count": "Số đánh giá",
         "children_count": "Số con"
     },
+    "admin_management": {
+        "title": "Hệ thống quản lý Admin",
+        "management": "Quản lý",
+        "statistics": "Thống kê",
+        "notes": "Lưu ý",
+        "delete_confirm": "Bạn có chắc muốn xóa?",
+        "check_before_delete": "• Kiểm tra kỹ trước khi xóa",
+        "clear_concise": "• Thông báo cần rõ ràng, ngắn gọn",
+        "correct_category": "• Phân loại đúng loại thông báo",
+        "tabs": {
+            "requests": "Quản lý yêu cầu",
+            "evaluations": "Quản lý đánh giá",
+            "notifications": "Quản lý thông báo"
+        },
+        "requests": {
+            "title": "Danh sách yêu cầu ({{count}})",
+            "filter": {
+                "request_type": "Loại yêu cầu",
+                "from_date": "Từ ngày",
+                "to_date": "Đến ngày",
+                "all": "Tất cả",
+                "bus": "Xe bus",
+                "bus_stop": "Trạm đón/trả",
+                "route": "Tuyến đường",
+                "other": "Khác",
+                "reset": "Reset"
+            },
+            "table": {
+                "parent": "Phụ huynh",
+                "request_type": "Loại",
+                "content": "Nội dung",
+                "send_date": "Ngày gửi",
+                "actions": "Thao tác"
+            },
+            "actions": {
+                "refresh": "Làm mới",
+                "delete": "Xóa"
+            },
+            "states": {
+                "loading": "Đang tải...",
+                "empty": "Không có yêu cầu nào"
+            }
+        },
+        "evaluations": {
+            "title": "Danh sách đánh giá ({{count}})",
+            "filter": {
+                "stars": "Số sao",
+                "from_date": "Từ ngày",
+                "to_date": "Đến ngày",
+                "all": "Tất cả",
+                "5_stars": "5 sao",
+                "4_stars": "4 sao",
+                "3_stars": "3 sao",
+                "2_stars": "2 sao",
+                "1_star": "1 sao",
+                "reset": "Reset"
+            },
+            "table": {
+                "parent": "Phụ huynh",
+                "schedule": "Lịch trình",
+                "rating": "Đánh giá",
+                "comment": "Nhận xét",
+                "send_date": "Ngày gửi",
+                "actions": "Thao tác"
+            },
+            "schedule_info": {
+                "date": "Ngày",
+                "time": "Giờ",
+                "route": "Tuyến đường"
+            },
+            "actions": {
+                "refresh": "Làm mới",
+                "delete": "Xóa"
+            },
+            "states": {
+                "loading": "Đang tải...",
+                "empty": "Không có đánh giá nào",
+                "no_comment": "Không có nhận xét"
+            }
+        },
+        "notifications": {
+            "title": "Quản lý thông báo",
+            "send": "Gửi thông báo",
+            "view": "Xem thông báo",
+            "send_form": {
+                "recipient": "Người nhận",
+                "all_people": "Tất cả mọi người",
+                "by_role": "Theo vai trò",
+                "specific_person": "Người cụ thể",
+                "select_role": "Chọn vai trò",
+                "parent_role": "Phụ huynh",
+                "driver_role": "Tài xế",
+                "admin_role": "Quản trị viên",
+                "notification_type": "Loại thông báo",
+                "bus_stop_type": "Thông báo trạm",
+                "schedule_type": "Thông báo lịch trình",
+                "incident_type": "Thông báo sự cố",
+                "other_type": "Thông báo khác",
+                "recipient_name": "Tên người nhận",
+                "recipient_phone": "Số điện thoại",
+                "search_results": "Kết quả tìm kiếm",
+                "selected": "Đã chọn",
+                "remove": "Xóa",
+                "message_content": "Nội dung thông báo",
+                "characters": "ký tự",
+                "reset": "Reset",
+                "send_notification": "📤 Gửi thông báo",
+                "sending": "Đang gửi...",
+                "search_placeholder_name": "Nhập tên...",
+                "search_placeholder_phone": "Nhập SĐT...",
+                "message_placeholder": "Nhập nội dung thông báo..."
+            },
+            "view_filter": {
+                "recipient_type": "Loại người nhận",
+                "notification_type": "Loại thông báo",
+                "from_date": "Từ ngày",
+                "to_date": "Đến ngày",
+                "all_recipients": "Tất cả",
+                "parent_recipient": "Phụ huynh",
+                "admin_recipient": "Quản trị viên",
+                "driver_recipient": "Tài xế",
+                "other_type_filter": "Khác",
+                "reset": "Reset"
+            },
+            "view_table": {
+                "title": "Danh sách thông báo ({{count}})",
+                "recipient": "Người nhận",
+                "role": "Vai trò",
+                "send_type": "Loại gửi",
+                "send_date": "Ngày gửi",
+                "details": "Chi tiết",
+                "actions": "Thao tác"
+            },
+            "actions": {
+                "refresh": "🔄 Làm mới",
+                "view": "👁️ Xem",
+                "delete": "🗑️ Xóa"
+            },
+            "detail_popup": {
+                "title": "Chi tiết thông báo",
+                "id": "ID",
+                "recipient": "Người nhận",
+                "send_type": "Loại gửi",
+                "notification_type": "Loại thông báo",
+                "time": "Thời gian",
+                "message_content": "Nội dung thông báo",
+                "close": "Đóng"
+            },
+            "states": {
+                "loading": "Đang tải...",
+                "empty": "Không có thông báo nào",
+                "all_people": "Tất cả"
+            }
+        },
+        "alerts": {
+            "send_success": "Gửi thông báo thành công! Đã gửi {{count}} thông báo.",
+            "send_error": "Lỗi khi gửi thông báo!",
+            "delete_success": "Xóa thành công!",
+            "delete_error": "Lỗi khi xóa!",
+            "missing_message": "Vui lòng nhập nội dung thông báo!",
+            "missing_recipient": "Vui lòng chọn người nhận!",
+            "missing_role": "Vui lòng chọn vai trò!",
+            "confirm_send": "Bạn có chắc muốn gửi thông báo này?",
+            "confirm_delete": "Bạn có chắc muốn xóa?"
+        }
+    },
     "parent_map": {
         "map_init_error": "❌ Lỗi khởi tạo map:",
         "fetch_driver_locations_error": "❌ Lỗi lấy vị trí tài xế:",
@@ -535,7 +724,7 @@
             "workSchedule": "Lịch làm việc",
             "studentList": "Danh sách học sinh",
             "pickupReport": "Báo cáo đón trả",
-            "notifications": "Thông báo",
+            "notification": "Thông báo",
             "route": "Tuyến đường"
         },
         "report": {
@@ -682,17 +871,6 @@
             "schedule": "Lịch trình",
             "incident": "Sự cố",
             "other": "Khác"
-        },
-        "mock": {
-            "senders": {
-                "admin": "Quản trị viên",
-                "parent": "Phụ huynh"
-            },
-            "messages": {
-                "schedule_change": "Thay đổi lịch trình: Xe bus tuyến số 01 sẽ thay đổi thời gian từ ngày mai",
-                "new_schedule": "Bạn có lịch trình mới: 8:00 - Tuyến số 02",
-                "important_notice": "Thông báo quan trọng từ phụ huynh về điểm đón"
-            }
         }
     },
     "studentList": {
